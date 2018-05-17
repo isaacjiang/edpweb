@@ -1,0 +1,92 @@
+
+
+<ion-navbar color="primary">
+  <ion-row>
+    <ion-col col-6>
+      <ion-row justify-content-around>
+        <ion-buttons >
+          <button ion-button  icon-left (click)="loadPage('home')" >
+            <ion-icon name="ios-apps"></ion-icon>
+            Home
+          </button>
+        </ion-buttons>
+        <ion-buttons  >
+          <button  ion-button icon-left (click)="toggleMenu('main')">
+            <ion-icon name="ios-ionic"></ion-icon>
+            Tasks
+          </button>
+        </ion-buttons>
+        <ion-buttons >
+          <button ion-button  icon-left (click)="loadPage('statistics')">
+            <ion-icon name="ios-stats"></ion-icon>
+            Stat
+          </button>
+        </ion-buttons>
+        <ion-buttons >
+          <button ion-button  icon-left (click)="loadPage('account')">
+            <ion-icon name="ios-calculator"></ion-icon>
+            Account
+          </button>
+        </ion-buttons>
+
+        <ion-buttons >
+          <button ion-button  icon-left (click)="loadPage('settings')">
+            <ion-icon name="ios-settings"></ion-icon>
+            Settings
+          </button>
+        </ion-buttons>
+
+        <ion-buttons >
+          <button ion-button icon-left (click)="toggleMenu('budget')">
+            <ion-icon name="ios-cube"></ion-icon>
+            Budget
+          </button>
+        </ion-buttons>
+
+        <ion-buttons >
+          <button ion-button icon-left (click)="toggleMenu('help')">
+            <ion-icon name="ios-help-circle"></ion-icon>
+            Help
+          </button>
+        </ion-buttons>
+
+      </ion-row>
+    </ion-col>
+    <ion-col col-4>
+      <ion-buttons >
+        <button ion-button clear block>
+          Leading in a World Of Disruption
+        </button>
+      </ion-buttons>
+
+    </ion-col>
+    <ion-col col-2>
+      <ion-row justify-content-around>
+        <ion-buttons>
+          <button ion-button clear block>
+            {{ current_user['username'] }}
+          </button>
+        </ion-buttons>
+
+        <ion-buttons *ngIf="viewCtl.showLogin">
+          <button ion-button icon-only (click)="login()">
+            <ion-icon name="person"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons *ngIf="viewCtl.showRegister">
+          <button ion-button icon-only (click)="register()">
+            <ion-icon name="person-add"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-buttons *ngIf="viewCtl.showLogOut">
+        <button ion-button icon-only (click)="logout()">
+          <ion-icon name="log-out"></ion-icon>
+        </button>
+      </ion-buttons>
+      </ion-row>
+
+    </ion-col>
+  </ion-row>
+
+</ion-navbar>
+

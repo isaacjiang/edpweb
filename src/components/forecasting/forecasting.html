@@ -1,0 +1,112 @@
+<ion-header>
+  <ion-navbar color="primary" >
+
+    <ion-title style="margin-left: -60px" >Forecast</ion-title>
+
+    <ion-buttons end style="margin-right: 30px">
+
+      <button ion-button  icon-only (click)="openPdf()">
+        <ion-icon name="document"></ion-icon>
+      </button>
+
+    </ion-buttons>
+    <ion-buttons end style="margin-right: 25px">
+      <button ion-button  icon-only (click)="openPdf(task_info['infoFile'])">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end style="margin-right: 20px">
+      <button ion-button icon-only  (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar >
+    <ion-segment [(ngModel)]="tabs" item-start>
+      <ion-segment-button [value]="parameters.tabs_value[0]">
+        {{parameters.tabs_disp[0]}}
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div [ngSwitch]="tabs">
+  <ion-grid  *ngSwitchCase="parameters.tabs_value[0]">
+    <ion-row style="border-bottom-width: 1px">
+      <ion-col col-1></ion-col>
+      <ion-col col-2><ion-label color="primary">{{ parameters.labels[0] }}</ion-label></ion-col>
+      <ion-col col-3>
+        <ion-input type="number" [placeholder]="parameters.labels[0]" [(ngModel)]="forcast.b2b" (ionChange)="onChange()" >
+        </ion-input>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-range pin="true" snaps="true" [(ngModel)]="forcast.b2b" min="100000000" max="1000000000" step="100000000" style="padding-top:0">
+        <ion-icon range-left small name="remove"></ion-icon>
+        <ion-icon range-right name="add"></ion-icon>
+
+      </ion-range>
+      </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom-width: 1px">
+      <ion-col col-1></ion-col>
+      <ion-col col-2><ion-label color="primary">{{ parameters.labels[1] }}</ion-label></ion-col>
+      <ion-col col-3>
+        <ion-input type="number" [placeholder]="parameters.labels[1]" [(ngModel)]="forcast.b2c" (ionChange)="onChange()">
+        </ion-input>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-range pin="true" snaps="true" [(ngModel)]="forcast.b2c" min="100000000" max="1000000000" step="100000000" style="padding-top:0">
+          <ion-icon range-left small name="remove"></ion-icon>
+          <ion-icon range-right name="add"></ion-icon>
+
+        </ion-range>
+      </ion-col>
+    </ion-row>
+    <ion-row style="border-bottom-width: 1px">
+      <ion-col col-1></ion-col>
+      <ion-col col-2><ion-label color="primary">{{ parameters.labels[2] }}</ion-label></ion-col>
+      <ion-col col-3>
+        <ion-input type="number" [placeholder]="parameters.labels[2]" [(ngModel)]="forcast.newoffering" (ionChange)="onChange()">
+        </ion-input>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-range pin="true" snaps="true" [(ngModel)]="forcast.newoffering" min="100000000" max="1000000000" step="100000000" style="padding-top:0">
+          <ion-icon range-left small name="remove"></ion-icon>
+          <ion-icon range-right name="add"></ion-icon>
+
+        </ion-range>
+      </ion-col>
+    </ion-row>
+
+    <ion-item-divider></ion-item-divider>
+    <ion-row style="border-bottom-width: 1px">
+
+      <ion-col col-1></ion-col>
+      <ion-col col-2><ion-label color="primary">{{ parameters.labels[3] }}</ion-label></ion-col>
+      <ion-col col-3>
+        <ion-input  [placeholder]="parameters.labels[3]" [(ngModel)]="forcast.total_disp" disabled>
+        </ion-input>
+      </ion-col>
+      <ion-col col-6 >
+        <ion-range disabled pin="true" snaps="true" [(ngModel)]="forcast.total" min="100000000" max="3000000000" step="100000000" style="padding-top:0">
+          <ion-icon range-left small name="remove"></ion-icon>
+          <ion-icon range-right name="add"></ion-icon>
+
+        </ion-range>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </div>
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-buttons style="margin-right: 90px" end>
+    <button ion-button color="primary" (click)="submit()">Submit</button>
+  </ion-buttons>
+</ion-footer>

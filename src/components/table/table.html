@@ -1,0 +1,19 @@
+<ion-card>
+  <ion-card-header>
+    {{formTitle}}
+  </ion-card-header>
+
+  <ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">
+    <ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">
+      <span>{{ cell  }}</span>
+      <ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+
+
+
+
+
+

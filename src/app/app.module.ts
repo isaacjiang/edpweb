@@ -1,30 +1,88 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {  HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { EDPWebApp } from './app.component';
+
+import { Items } from '../config/items';
+import { Settings } from '../services/settings.service';
+import { User } from '../services/user.service';
+import { Api } from '../services/api.service';
+
+import {Root} from "../views/root/root";
+import {Welcome} from "../views/welcome/welcome";
+
+import {Login} from "../components/login/login";
+
+import {MainMenuDirective} from "../directives/main.menu.directive";
+import {ContentDirective} from "../directives/content.directive";
+import {HeaderComponent} from "../components/header/header";
+import {MenuComponent} from "../components/menu/menu";
+import {Forecasting} from "../components/forecasting/forecasting";
+import {HelpMenuDirective} from "../directives/help.menu.directive";
+import {FixedMenuDirective} from "../directives/fixed.menu.directive";
+import {BudgetMenuDirective} from "../directives/budget.menu.directive";
+import {StatusDirective} from "../directives/status.directive";
+import {MessagesDirective} from "../directives/message.directive";
+import {StatusComponent} from "../components/status/status";
+import {FixedMenuComponent} from "../components/fixedmenu/fixedmenu";
+import {PdfViewerComponent} from "../components/pdfviewer/pdfviewer";
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import {Hiring} from "../components/hiring/hiring";
+import {DocumentViewer} from "@ionic-native/document-viewer";
+import {Resource} from "../components/resource/resource";
+import {Action} from "../components/action/action";
+import {HelpMenuComponent} from "../components/helpmenu/helpmenu";
+import {BudgetMenuComponent} from "../components/budgetmenu/budgetmenu";
+
+export function provideSettings(storage: Storage) {
+  /**
+   * The Settings provider takes a set of default settings for your app.
+   *
+   * You can add new settings options at any time. Once the settings are saved,
+   * these values will not overwrite the saved values (this can be done manually if desired).
+   */
+  return new Settings(storage, {
+    option1: true,
+    option2: 'Ionitron J. Framework',
+    option3: '3',
+    option4: 'Hello'
+  });
+}
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    Root,Welcome,
+    MainMenuDirective,ContentDirective,HelpMenuDirective,FixedMenuDirective,BudgetMenuDirective,StatusDirective,MessagesDirective,
+    HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
+    StatusComponent,PdfViewerComponent,
+    EDPWebApp,
+    Login,Forecasting,Hiring,Resource,Action
   ],
+
   imports: [
-    BrowserModule,
-    IonicModule.forRoot(MyApp)
+    BrowserModule,PdfViewerModule,
+    HttpClientModule,
+    IonicModule.forRoot(EDPWebApp, { mode: 'ios' }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    EDPWebApp,
+    Root,Welcome,
+    Login,Forecasting,Hiring,Resource,Action,
+    MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
+    StatusComponent,PdfViewerComponent
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Api,
+    Items,DocumentViewer,
+    User,
+    { provide: Settings, useFactory: provideSettings, deps: [Storage] },
+    // Keep this to enable Ionic's runtime error handling during development
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

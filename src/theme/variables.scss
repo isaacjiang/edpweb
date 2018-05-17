@@ -1,16 +1,6 @@
 // Ionic Variables and Theming. For more info, please see:
-// http://ionicframework.com/docs/theming/
-
-// Font path is used to include ionicons,
-// roboto, and noto sans fonts
+// http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
-
-
-// The app direction is used to include
-// rtl styles in your app. For more info, please see:
-// http://ionicframework.com/docs/theming/rtl-support/
-$app-direction: ltr;
-
 
 @import "ionic.globals";
 
@@ -20,9 +10,10 @@ $app-direction: ltr;
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-
+$text-color:        #000;
+$background-color:  #fff;
 
 
 // Named Color Variables
@@ -34,14 +25,31 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #488aff,
-  secondary:  #32db64,
-  danger:     #f53d3d,
-  light:      #f4f4f4,
-  dark:       #222
+  primary:    #1E90FF,//4B0082
+  secondary:  #4682B4,//000033
+  danger:     #FF0000,
+  alert:      #ffff00,
+  active:     #00ff00,
+  dark:       #202020,
+  transparent: rgba(255, 255, 255, .3)
 );
 
+$range-md-bar-height:2px;
+$range-md-bar-background-color:#bdbdbd;
+$range-md-bar-active-background-color:#FF0000;
+$range-md-tick-height:12px;
+$range-md-tick-width:1px;
+$range-md-tick-border-radius:3;
+$range-md-tick-background-color:#696969;
+$range-md-tick-active-background-color: #008100;
+$modal-inset-width:80%;
+$modal-inset-height-large:70%;
+$modal-inset-height-small:90%;
 
+$alert-min-width:30%;
+$alert-ios-head-text-align:left;
+
+$toolbar-ios-title-text-align:left;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
@@ -76,7 +84,7 @@ $colors: (
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/ionicons/
+// http://ionicframework.com/docs/v2/ionicons/
 
 @import "ionic.ionicons";
 

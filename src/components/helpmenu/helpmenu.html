@@ -1,0 +1,22 @@
+
+  <ion-toolbar color ='secondary'>
+    <ion-title style="padding-left: 10px">{{ title }}</ion-title>
+  </ion-toolbar>
+
+  <ion-list >
+    <button  ion-item *ngFor="let menuItem of workflow" (click)="menuClick(menuItem)">
+      <ion-icon [name]="menuItem['status']=='Completed'?'ios-ribbon-outline':'ios-stopwatch-outline'"></ion-icon>
+    <span >{{ menuItem.taskName }}</span>
+    </button>
+  </ion-list>
+
+
+
+
+
+
+
+
+
+
+

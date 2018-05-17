@@ -1,0 +1,17 @@
+welcome {
+  .welcome-anim {
+    position: fixed;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+  }
+  .welcome-buttons{
+    position: absolute;
+    top:50%;
+    left:calc(50% - 240px);
+    button{
+      width: 220px;
+    }
+  }
+
+}

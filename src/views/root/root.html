@@ -1,0 +1,45 @@
+<ion-header >
+  <edp-header></edp-header>
+</ion-header>
+
+<ion-menu type="overlay" [content]="mainMenu" side="left" id="main">
+  <edp-directive-menu-main></edp-directive-menu-main>
+</ion-menu>
+
+<ion-menu type="overlay" [content]="mainMenu" side="right" id="help">
+  <edp-directive-menu-help></edp-directive-menu-help>
+</ion-menu>
+
+<ion-menu type="overlay" [content]="mainMenu" side="right" id="budget">
+  <edp-directive-menu-budget></edp-directive-menu-budget>
+</ion-menu>
+
+<ion-content class="ion-content" #mainMenu>
+  <ion-grid >
+    <ion-row style="height: 100%">
+      <ion-col col-2 >
+        <ion-row id="fixed-menu" style="height: 70%">
+          <ion-card >
+            <edp-directive-menu-fixed></edp-directive-menu-fixed>
+          </ion-card>
+        </ion-row>
+       <ion-row id="status-area" style="height: 30%">
+         <ion-card >
+           <edp-directive-status></edp-directive-status>
+         </ion-card>
+       </ion-row>
+
+      </ion-col>
+      <ion-col col-10>
+        <ion-row id="content-area" style="height: 90%">
+          <edp-directive-content></edp-directive-content>
+        </ion-row>
+        <ion-row id="message-area" style="height: 10%">
+          <ion-card >
+            <edp-directive-message></edp-directive-message>
+          </ion-card>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

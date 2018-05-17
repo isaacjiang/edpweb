@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar color="primary" >
+
+    <ion-title style="margin-left: -60px" >Resource</ion-title>
+
+
+
+    <ion-buttons end style="margin-right: 30px">
+      <input type="file" (change)="fileChange($event)"  accept=".pdf,.doc,.docx">
+      <button ion-button  icon-only>
+          <ion-icon name="document"></ion-icon>
+      </button>
+
+    </ion-buttons>
+    <ion-buttons end style="margin-right: 25px">
+      <button ion-button  icon-only (click)="openPdf(task_info['infoFile'])">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end style="margin-right: 20px">
+      <button ion-button icon-only  (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar >
+    <ion-segment [(ngModel)]="tabs" item-start (ionChange)="onTabChange()">
+      <ion-segment-button [value]="tab" *ngFor="let tab of parameters.tabs_value">
+        {{ tab.toUpperCase()}}
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+  <ion-grid>
+    <ion-row style="border-bottom-width: 1px" *ngFor="let resource of resource[tabs]">
+      <ion-col col-2>
+      </ion-col>
+      <ion-col col-1>
+        <ion-checkbox [(ngModel)]="resource.checked" style="padding-top:25px"></ion-checkbox>
+      </ion-col>
+      <ion-col col-4>
+        <ion-item>
+            <!--<ion-avatar item-start>-->
+              <!--<img src={{resource.url}}>-->
+            <!--</ion-avatar>-->
+
+            <h2>{{resource.resourceName}} </h2>
+            <h3>{{resource.resourceType}} </h3>
+            <p>Cost :{{resource.cost}} </p>
+        </ion-item>
+
+      </ion-col>
+      <ion-col col-3>
+        <ion-buttons end >
+          <button ion-button  clear icon-only (click)="openPdf(resource.infoFile)" style="padding-top:20px">
+            <ion-icon name="information-circle"></ion-icon>
+          </button>
+        </ion-buttons>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
+
+  </div>
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-buttons style="margin-right: 90px;margin-bottom: 6px" end>
+    <button ion-button color="primary" (click)="submit()">Submit</button>
+  </ion-buttons>
+</ion-footer>

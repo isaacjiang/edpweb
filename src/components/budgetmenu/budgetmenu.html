@@ -1,0 +1,29 @@
+
+  <ion-toolbar color ='secondary'>
+    <ion-title style="padding-left: 10px">{{ title }}</ion-title>
+  </ion-toolbar>
+
+  <ion-list>
+    <div *ngFor="let budget of current_budget,let i=index">
+         <!--<span padding-left="20px"></span>-->
+        <ion-item   (click)="budget_input(i,budget)" *ngIf="budget.budgetDescLevel==2 || budget.parent == current_budget[current_index].budgetDescID">
+
+        <ion-icon [style.padding-left]="budget.budgetDescLevel==2?0:'60px'" [name]="(current_index!=i || current_index==0)?'arrow-forward':'arrow-down'" item-start></ion-icon>
+        <h3>{{budget.budgetDescName}} </h3>
+        <h2>{{budget.currentValue_text}} </h2>
+
+    </ion-item>
+    </div>
+
+  </ion-list>
+
+
+
+
+
+
+
+
+
+
+
