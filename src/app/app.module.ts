@@ -36,6 +36,8 @@ import {Resource} from "../components/resource/resource";
 import {Action} from "../components/action/action";
 import {HelpMenuComponent} from "../components/helpmenu/helpmenu";
 import {BudgetMenuComponent} from "../components/budgetmenu/budgetmenu";
+import {FileUploadModule} from "ng2-file-upload";
+
 
 export function provideSettings(storage: Storage) {
   /**
@@ -63,7 +65,7 @@ export function provideSettings(storage: Storage) {
   ],
 
   imports: [
-    BrowserModule,PdfViewerModule,
+    BrowserModule,PdfViewerModule,FileUploadModule,
     HttpClientModule,
     IonicModule.forRoot(EDPWebApp, { mode: 'ios' }),
     IonicStorageModule.forRoot()

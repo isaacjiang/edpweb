@@ -6,9 +6,13 @@
 
 
     <ion-buttons end style="margin-right: 30px">
-      <input type="file" (change)="fileChange($event)"  accept=".pdf,.doc,.docx">
-      <button ion-button  icon-only>
+
+
+      <button ion-button  icon-only (click)="clickFileInput()">
           <ion-icon name="document"></ion-icon>
+        <input #fileUpload id="selectedFile" type="file" (change)="fileChange($event)" ng2FileSelect
+               [uploader]="uploader" multiple style="display: none;">
+        <!--<input type="file" id="selectedFile" (change)="fileChange($event)"  accept=".pdf" style="display: none">-->
       </button>
 
     </ion-buttons>
