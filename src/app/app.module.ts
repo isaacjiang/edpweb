@@ -37,6 +37,7 @@ import {Action} from "../components/action/action";
 import {HelpMenuComponent} from "../components/helpmenu/helpmenu";
 import {BudgetMenuComponent} from "../components/budgetmenu/budgetmenu";
 import {FileUploadModule} from "ng2-file-upload";
+import {Workforce} from "../components/workforce/workforce";
 
 
 export function provideSettings(storage: Storage) {
@@ -61,7 +62,7 @@ export function provideSettings(storage: Storage) {
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent,
     EDPWebApp,
-    Login,Forecasting,Hiring,Resource,Action
+    Login,Forecasting,Hiring,Resource,Action,Workforce
   ],
 
   imports: [
@@ -74,7 +75,7 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     EDPWebApp,
     Root,Welcome,
-    Login,Forecasting,Hiring,Resource,Action,
+    Login,Forecasting,Hiring,Resource,Action,Workforce,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent
   ],

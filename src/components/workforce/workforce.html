@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar color="primary" >
+
+    <ion-title style="margin-left: -60px" >Workforce</ion-title>
+    <ion-buttons end style="margin-right: 30px">
+      <button ion-button  icon-only (click)="clickFileInput()">
+          <ion-icon name="document"></ion-icon>
+        <input #fileUpload id="selectedFile" type="file" (change)="fileChange($event)" ng2FileSelect
+               [uploader]="uploader" multiple style="display: none;">
+        <!--<input type="file" id="selectedFile" (change)="fileChange($event)"  accept=".pdf" style="display: none">-->
+      </button>
+
+    </ion-buttons>
+    <ion-buttons end style="margin-right: 25px">
+      <button ion-button  icon-only (click)="openPdf(task_info['infoFile'])">
+        <ion-icon name="information-circle"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end style="margin-right: 20px">
+      <button ion-button icon-only  (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar >
+    <ion-segment [(ngModel)]="tabs" item-start (ionChange)="onTabChange()">
+      <ion-segment-button [value]="tab" *ngFor="let tab of parameters.tabs_value">
+        {{ tab.toUpperCase()}}
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div >
+  <ion-grid>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+      </ion-col>
+      <ion-col col-2>
+        <label text-center>
+          <h3> Core </h3>
+        </label>
+      </ion-col>
+      <ion-col col-2>
+        <label text-center>
+          <h3> Contingency </h3>
+        </label>
+      </ion-col>
+      <ion-col col-2 >
+        <label text-center>
+          <h3> Total </h3>
+        </label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+        <label text-center><h4>
+          Workforce at start of Period :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].valueatstart_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].valueatstart_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 >
+        <ion-item text-center>
+          <h2>{{workforce[tabs].valueatstart_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-1></ion-col>
+      <ion-col col-3>
+        <label text-center><h4>
+          Size recommended by HR :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].recommended_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].recommended_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2 >
+        <ion-item text-center>
+          <h2>{{workforce[tabs].recommended_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+  </div>
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-buttons style="margin-right: 90px;margin-bottom: 6px" end>
+    <button ion-button color="primary" (click)="submit()">Submit</button>
+  </ion-buttons>
+</ion-footer>

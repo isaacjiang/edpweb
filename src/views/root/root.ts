@@ -31,6 +31,7 @@ import {Resource} from "../../components/resource/resource";
 import {Action} from "../../components/action/action";
 import {HelpMenuComponent} from "../../components/helpmenu/helpmenu";
 import {BudgetMenuComponent} from "../../components/budgetmenu/budgetmenu";
+import {Workforce} from "../../components/workforce/workforce";
 
 @IonicPage()
 @Component({
@@ -316,10 +317,10 @@ export class Root {
       +"&teamName="+ params.teamName
       +"&period="+ params.period
 
-    this.api.get("/api/dtools/hiring"+urlParams)
-      .subscribe((employees)=>{
-          console.log(employees)
-          this.modalCtl.create(Hiring,{params:params,data:employees},{enableBackdropDismiss:false}).present();
+    this.api.get("/api/dtools/workforce"+urlParams)
+      .subscribe((workforce)=>{
+          console.log(workforce)
+          this.modalCtl.create(Workforce,{params:params,data:workforce},{enableBackdropDismiss:false}).present();
         }
       )
 

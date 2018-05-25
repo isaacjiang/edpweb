@@ -38,13 +38,13 @@ export class Hiring {
     });
     this.uploader.onCompleteItem=(item:any,resp:any,status,opt)=> {
 
-      console.log(JSON.parse(resp))
+      //console.log(JSON.parse(resp))
+      this.task_info.infoFile=JSON.parse(resp)
       this.api.post("/api/dtools/updatetaskfile", {
         task_id: this.task_info._id,
         infoFile: JSON.parse(resp)
       }).subscribe(resp2 => {
         console.log(resp2)
-        this.task_info.infoFile=JSON.parse(resp)
         // $rootScope.tasklists.forEach(function (t) {
         //   if (t._id == task._id){
         //     t.infoFile = response.data[0]
