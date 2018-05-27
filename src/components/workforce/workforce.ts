@@ -145,47 +145,70 @@ export class Workforce {
 
         params.data.workforce_def[i].recommended_core =parseInt((forecast/(params.data.workforce_def[i].recommend_base)*(params.data.workforce_def[i].coreEmployeeRate)).toString())
         params.data.workforce_def[i].recommended_contract =parseInt( (forecast/(params.data.workforce_def[i].recommend_base)*(1-params.data.workforce_def[i].coreEmployeeRate)).toString())
+        params.data.workforce_def[i].recommended_total=params.data.workforce_def[i].recommended_contract + params.data.workforce_def[i].recommended_core
       }
       //root.workforce = params.workforce_def
       //console.log($scope.workforce )
     }
-
 
     params.data.workforce_def.forEach(workforce=>{
       this.workforce[workforce['functions']] =workforce
       this.parameters.tabs_value.push(workforce['functions'])
     });
     this.tabs = this.parameters.tabs_value[0]
-    console.log(this.workforce )
+   // console.log(this.workforce )
   }
 
   private onTabChange(e){
 
   }
-  private onChange(e){
-    e.salaryOffer_t = this.formatNum(parseInt(e.salaryOffer))
+  private onChange(wf){
+   // console.log(wf)
+    if (wf.adjustment_core != undefined || wf.adjustment_contract != undefined){
+      wf.adjustment_core = wf.adjustment_core == undefined? 0: wf.adjustment_core
+      wf.adjustment_contract = wf.adjustment_contract == undefined? 0: wf.adjustment_contract
+
+      wf.adjustment_total =wf.adjustment_core + wf.adjustment_contract
+
+      wf.adjustedworkforce_core = this.formatNum(wf.valueatstart_core + wf.adjustment_core)
+      wf.adjustedworkforce_contract = this.formatNum(wf.valueatstart_contract + wf.adjustment_contract)
+      wf.adjustedworkforce_total = this.formatNum(wf.valueatstart_total + wf.adjustment_total)
+
+
+      wf.adjustmentcost_core = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_core *
+        (wf.adjustment_core > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
+      wf.adjustmentcost_contract = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_contract *
+        (wf.adjustment_contract > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
+      wf.adjustmentcost_total = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_total
+        * (wf.adjustment_total > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
+
+      wf.adjustwages_core = this.formatNum(wf.avWage * (wf.valueatstart_core + wf.adjustment_core))
+      wf.adjustwages_contract = this.formatNum(wf.avWage * (wf.valueatstart_contract + wf.adjustment_contract))
+      wf.adjustwages_total = this.formatNum(wf.avWage * (wf.valueatstart_total + wf.adjustment_total))
+
+      wf.adjustexpenses_core = this.formatNum(wf.avExpense * (wf.valueatstart_core + wf.adjustment_core))
+      wf.adjustexpenses_contract = this.formatNum(wf.avExpense * (wf.valueatstart_contract + wf.adjustment_contract))
+      wf.adjustexpenses_total = this.formatNum(wf.avExpense * (wf.valueatstart_total + wf.adjustment_total))
+
+      wf.workforcecost_total = this.formatNum((wf.avWage + wf.avExpense) * (wf.valueatstart_total + wf.adjustment_total)
+        + (wf.avWage + wf.avExpense) * wf.adjustment_total * (wf.adjustment_total > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
+    }
   }
 
   private submit(){
-    let workforce = this.workforce
-    let offeredEmployees=[]
-    Object.keys(workforce).forEach(function (key) {
-      workforce[key].forEach(function (e) {
-        if (e.salaryOffer) {
-          offeredEmployees.push(e)
-        }
-      })
+    let workforce = [];
+      Object.keys(this.workforce).forEach((fun)=>{
+        workforce.push(this.workforce[fun])
     })
-
-    this.api.post("/api/dtools/hiring",{
+    this.api.post("/api/dtools/workforce",{
       username: this.task_info.username,
       taskID:this.task_info.taskID,
       companyName :this.task_info.companyName,
       teamName : this.task_info.teamName,
       period:this.task_info.period,
-      offer:offeredEmployees
+      workforce:workforce
     }).subscribe(resp=>{
-      console.log(resp)
+     // console.log(resp)
       this.dismiss()
     })
 

@@ -29,87 +29,225 @@
       <ion-segment-button [value]="tab" *ngFor="let tab of parameters.tabs_value">
         {{ tab.toUpperCase()}}
       </ion-segment-button>
-
+      <ion-segment-button value="summary">
+        SUMMARY
+      </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div >
-  <ion-grid>
+
+  <ion-grid *ngIf="tabs!='summary'">
     <ion-row>
-      <ion-col col-1></ion-col>
+
       <ion-col col-3>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <label text-center>
           <h3> Core </h3>
         </label>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <label text-center>
           <h3> Contingency </h3>
         </label>
       </ion-col>
-      <ion-col col-2 >
+      <ion-col col-3>
         <label text-center>
           <h3> Total </h3>
         </label>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-1></ion-col>
+
       <ion-col col-3>
         <label text-center><h4>
           Workforce at start of Period :
         </h4>
         </label>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <ion-item text-center>
           <h2>{{workforce[tabs].valueatstart_core}} </h2>
         </ion-item>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <ion-item text-center>
           <h2>{{workforce[tabs].valueatstart_contract}} </h2>
         </ion-item>
       </ion-col>
-      <ion-col col-2 >
+      <ion-col col-3 >
         <ion-item text-center>
           <h2>{{workforce[tabs].valueatstart_total}} </h2>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-1></ion-col>
       <ion-col col-3>
         <label text-center><h4>
           Size recommended by HR :
         </h4>
         </label>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <ion-item text-center>
           <h2>{{workforce[tabs].recommended_core}} </h2>
         </ion-item>
       </ion-col>
-      <ion-col col-2>
+      <ion-col col-3>
         <ion-item text-center>
           <h2>{{workforce[tabs].recommended_contract}} </h2>
         </ion-item>
       </ion-col>
-      <ion-col col-2 >
+      <ion-col col-3 >
         <ion-item text-center>
           <h2>{{workforce[tabs].recommended_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <label text-center><h4>
+          Adjustment to Workforce :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-range  pin="true"  [(ngModel)]="workforce[tabs].adjustment_core" min="-1000" max="1000"  (ionChange)="onChange(workforce[tabs])" style="padding-top:20px">
+
+        </ion-range>
+      </ion-col>
+      <ion-col col-3>
+        <ion-range pin="true"  [(ngModel)]="workforce[tabs].adjustment_contract" min="-1000" max="1000"(ionChange)="onChange(workforce[tabs])" style="padding-top:20px">
+        </ion-range>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustment_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+<ion-item-divider></ion-item-divider>
+    <ion-row>
+      <ion-col col-3>
+        <label text-center><h4>
+          Adjusted Workforce :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustedworkforce_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustedworkforce_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustedworkforce_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <label text-center><h4>
+          Cost of Workforce Adjustment :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustmentcost_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustmentcost_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustmentcost_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <label text-center><h4>
+          Business Function Wages :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustwages_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustwages_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustwages_total}} </h2>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3>
+        <label text-center><h4>
+          Calculated Expenses :
+        </h4>
+        </label>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustexpenses_core}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustexpenses_contract}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3 >
+        <ion-item text-center>
+          <h2>{{workforce[tabs].adjustexpenses_total}} </h2>
         </ion-item>
       </ion-col>
     </ion-row>
 
   </ion-grid>
 
-  </div>
+  <ion-grid *ngIf="tabs=='summary'">
 
+    <ion-row *ngFor="let tab of parameters.tabs_value">
+      <ion-col col-2></ion-col>
+
+      <ion-col col-4>
+        <label text-start><h4>
+          {{workforce[tab].functions}}
+        </h4></label>
+
+      </ion-col>
+      <ion-col col-4>
+        <ion-item text-end>
+          <h2>{{workforce[tab].workforcecost_total}} </h2>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+
+      </ion-col>
+    </ion-row>
+
+
+
+  </ion-grid>
 
 
 </ion-content>
