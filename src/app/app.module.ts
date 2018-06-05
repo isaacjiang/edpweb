@@ -1,4 +1,4 @@
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicStorageModule, Storage } from '@ionic/storage';
@@ -6,7 +6,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { EDPWebApp } from './app.component';
 
-import { Items } from '../config/items';
 import { Settings } from '../services/settings.service';
 import { User } from '../services/user.service';
 import { Api } from '../services/api.service';
@@ -38,6 +37,9 @@ import {HelpMenuComponent} from "../components/helpmenu/helpmenu";
 import {BudgetMenuComponent} from "../components/budgetmenu/budgetmenu";
 import {FileUploadModule} from "ng2-file-upload";
 import {Workforce} from "../components/workforce/workforce";
+import {Expenditure} from "../components/expenditure/expenditure";
+import {KPIComponent} from "../components/kpi/kpi";
+
 
 
 export function provideSettings(storage: Storage) {
@@ -60,9 +62,9 @@ export function provideSettings(storage: Storage) {
     Root,Welcome,
     MainMenuDirective,ContentDirective,HelpMenuDirective,FixedMenuDirective,BudgetMenuDirective,StatusDirective,MessagesDirective,
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent,
+    StatusComponent,PdfViewerComponent,KPIComponent,
     EDPWebApp,
-    Login,Forecasting,Hiring,Resource,Action,Workforce
+    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure
   ],
 
   imports: [
@@ -75,13 +77,13 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     EDPWebApp,
     Root,Welcome,
-    Login,Forecasting,Hiring,Resource,Action,Workforce,
+    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent
+    StatusComponent,PdfViewerComponent,KPIComponent
   ],
   providers: [
     Api,
-    Items,DocumentViewer,
+    DocumentViewer,
     User,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development

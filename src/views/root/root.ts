@@ -32,6 +32,8 @@ import {Action} from "../../components/action/action";
 import {HelpMenuComponent} from "../../components/helpmenu/helpmenu";
 import {BudgetMenuComponent} from "../../components/budgetmenu/budgetmenu";
 import {Workforce} from "../../components/workforce/workforce";
+import {Expenditure} from "../../components/expenditure/expenditure";
+import {KPIComponent} from "../../components/kpi/kpi";
 
 @IonicPage()
 @Component({
@@ -80,16 +82,17 @@ export class Root {
     }
 
     eventsHandles(root) {
-      root.events.unsubscribe('header-load-page')
-      root.events.unsubscribe('login-do-login')
-      root.events.unsubscribe('header-logout-current-user')
-      root.events.unsubscribe('menu-click-item')
+      root.events.unsubscribe("header-load-page")
+      root.events.unsubscribe("login-do-login")
+      root.events.unsubscribe("header-logout-current-user")
+      root.events.unsubscribe("menu-click-item")
 
-      root.events.subscribe('header-load-page', (param) => {
+      root.events.subscribe("header-load-page", (param) => {
         this.upateUserInfo(this.current_user.username);
         this.loadFixedMenu(this.fixedMenuHost.viewContainerRef,FixedMenuComponent,param)
+        this.loadContentView(param)
       })
-      root.events.subscribe( "header-toggle-menu", (menuId) => {
+      root.events.subscribe("header-toggle-menu", (menuId) => {
         switch (menuId){
           case "help":
             this.loadMenu(this.helpMenuHost.viewContainerRef,HelpMenuComponent,menuId)
@@ -112,11 +115,11 @@ export class Root {
       root.events.subscribe("header-logout-current-user", () => {
         this._doLogout()
       });
-      root.events.subscribe('login-do-login', (account) => {
+      root.events.subscribe("login-do-login", (account) => {
        // console.log(account)
         this._doLogin(account)
       });
-      root.events.subscribe('menu-click-item', (param) => {
+      root.events.subscribe("menu-click-item", (param) => {
             console.log(param)
         this.toggleMainMenu();
         switch (param.taskID){
@@ -162,7 +165,7 @@ export class Root {
           case "05004":
           case "06004":
           case "07004":
-            this._showBudget(param)
+            this._showExpenditure(param)
             break;
           case "02005":
           case "04005":
@@ -220,9 +223,32 @@ export class Root {
     }
 
     public loadMenu(viewContainerRef,component,menuID){
-
       let ref =  this._loadComponent(viewContainerRef,component)
       ref.instance.initialiazation(this.current_user,menuID)
+    }
+
+    public loadContentView(menuID){
+      switch (menuID) {
+        case 'statistics': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+          ref.instance.initialiazation()
+          break;
+        }
+        case 'account': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+          break;
+        }
+        case 'settings': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+          break;
+        }
+        default : {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+          ref.instance.initialiazation()
+          break;
+        }
+      }
+
     }
 
     private upateUserInfo(current_username){
@@ -356,22 +382,11 @@ export class Root {
 
   }
 
-    private _showBudget(params){
-
-      let urlParams ="?username="+this.current_user.username
-        +"&taskID="+ params.taskID
-        +"&companyName="+params.companyName
-        +"&teamName="+ params.teamName
-        +"&period="+ params.period
-
-      this.api.get("/api/dtools/hiring"+urlParams)
-        .subscribe((employees)=>{
-            console.log(employees)
-            this.modalCtl.create(Hiring,{params:params,data:employees},{enableBackdropDismiss:false}).present();
-          }
-        )
+    private _showExpenditure(params){
 
 
+
+       this.modalCtl.create(Expenditure,{params:params,data:{}},{enableBackdropDismiss:false}).present()
 
     }
 
