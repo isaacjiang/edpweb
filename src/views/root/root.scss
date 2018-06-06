@@ -13,19 +13,19 @@
       height: 100%;
       margin: 0;
       padding: 0;
-      ion-row{
-        margin: 0;
-        padding: 0;
-        ion-col{
-          margin: 0;
-          padding: 0;
-          ion-row{
-            width: 100%;
-            margin: 0;
-            padding: 0;
-          }
-        }
-      }
+      //ion-row{
+      //  margin: 0;
+      //  padding: 0;
+      //  ion-col{
+      //    margin: 0;
+      //    padding: 0;
+      //    ion-row{
+      //      width: 100%;
+      //      margin: 0;
+      //      padding: 0;
+      //    }
+      //  }
+      //}
 #fixed-menu{
   ion-card{
     width: 100%;
@@ -41,12 +41,12 @@
     margin-left: 0;
   }
 }#content-area{
-   ion-card{
-     width: 100%;
-     background-color: #2773ff;
-     margin-right: 0;
-     margin-top: 2px;
-   }
+   //ion-card{
+   //  width: 100%;
+   // // background-color: #2773ff;
+   //  margin-right: 0;
+   //  margin-top: 2px;
+   //}
  }
  #message-area{
 
@@ -54,12 +54,12 @@
      width: 100%;
      margin-bottom: 0;
      margin-right: 0;
-margin-left: 0;
+     margin-left: 0;
    }
  }
 
 
-    }
+   }
 
   }
 

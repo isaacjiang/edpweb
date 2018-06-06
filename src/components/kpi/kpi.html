@@ -1,15 +1,67 @@
-<ion-card>
-  <ion-card-header>
-    {{formTitle}}
-  </ion-card-header>
+<ion-grid class="kpi-grid">
+  <ion-row style="height: 50%;">
+    <ion-col col-6 >
+      <ion-card>
+        <ion-card-header>
+          ppp
+        </ion-card-header>
 
-  <ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">
-    <ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">
-      <span>{{ cell  }}</span>
-      <ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>
+        <!--<ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">-->
+          <!--<ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">-->
+            <!--<span>{{ cell  }}</span>-->
+            <!--<ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
+      </ion-card>
+    </ion-col>
+    <ion-col col-6>
+      <ion-card>
+        <ion-card-header>
+          ppp
+        </ion-card-header>
+
+        <!--<ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">-->
+          <!--<ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">-->
+            <!--<span>{{ cell  }}</span>-->
+            <!--<ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
+      </ion-card>
     </ion-col>
   </ion-row>
-</ion-card>
+  <ion-row style="height: 50%;">
+    <ion-col col-6>
+      <ion-card>
+        <ion-card-header>
+          ppp
+        </ion-card-header>
+
+        <!--<ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">-->
+          <!--<ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">-->
+            <!--<span>{{ cell  }}</span>-->
+            <!--<ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
+      </ion-card>
+    </ion-col>
+    <ion-col col-6>
+      <ion-card>
+        <ion-card-header>
+          ppp
+        </ion-card-header>
+
+        <!--<ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">-->
+          <!--<ion-col class="tcol" text-center *ngFor="let cell of line;let indexCol= index" (click)="selectCell(indexRow,indexCol)">-->
+            <!--<span>{{ cell  }}</span>-->
+            <!--<ion-icon name="checkmark-circle" color="active" *ngIf="indexRow>0 && cell==2"></ion-icon>-->
+          <!--</ion-col>-->
+        <!--</ion-row>-->
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
 
 
 
