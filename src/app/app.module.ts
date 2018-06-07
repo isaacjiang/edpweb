@@ -39,30 +39,17 @@ import {FileUploadModule} from "ng2-file-upload";
 import {Workforce} from "../components/workforce/workforce";
 import {Expenditure} from "../components/expenditure/expenditure";
 import {KPIComponent} from "../components/kpi/kpi";
+import {StatisticsComponent} from "../components/statistics/statistics";
+import {AccountComponent} from "../components/account/account";
+import {SettingsComponent} from "../components/settings/settings";
 
-
-
-export function provideSettings(storage: Storage) {
-  /**
-   * The Settings provider takes a set of default settings for your app.
-   *
-   * You can add new settings options at any time. Once the settings are saved,
-   * these values will not overwrite the saved values (this can be done manually if desired).
-   */
-  return new Settings(storage, {
-    option1: true,
-    option2: 'Ionitron J. Framework',
-    option3: '3',
-    option4: 'Hello'
-  });
-}
 
 @NgModule({
   declarations: [
     Root,Welcome,
     MainMenuDirective,ContentDirective,HelpMenuDirective,FixedMenuDirective,BudgetMenuDirective,StatusDirective,MessagesDirective,
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent,KPIComponent,
+    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,
     EDPWebApp,
     Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure
   ],
@@ -79,14 +66,12 @@ export function provideSettings(storage: Storage) {
     Root,Welcome,
     Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent,KPIComponent
+    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent
   ],
   providers: [
     Api,
     DocumentViewer,
     User,
-    { provide: Settings, useFactory: provideSettings, deps: [Storage] },
-    // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

@@ -64,15 +64,15 @@ export class FixedMenuComponent{
 
 
       this.api.get(url).subscribe((resp)=>{
-        console.log(menuId,resp)
+        //console.log(menuId,resp)
         root.workflow = resp
-        console.log(root.workflow )
+        //console.log(root.workflow )
       })
     }
 
 
      menuClick(funcName){
-        this.events.publish('menu-click-item',funcName)
+        this.events.publish('fixedmenu-click-item',funcName)
      }
 
 

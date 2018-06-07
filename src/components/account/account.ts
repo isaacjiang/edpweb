@@ -9,11 +9,11 @@ import {Api} from "../../services/api.service";
 
 
 @Component({
-    selector: 'edp-kpi',
-    templateUrl: 'kpi.html'
+    selector: 'edp-account',
+    templateUrl: 'account.html'
 
 })
-export class KPIComponent {
+export class AccountComponent {
 
     public formData = [];
     public formTitle:any;

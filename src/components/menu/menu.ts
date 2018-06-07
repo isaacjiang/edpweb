@@ -18,7 +18,7 @@ export class MenuComponent{
     public workflow :any;
     public title:any;
 
-    constructor(public api:Api, public events: Events,public user:User) {
+    constructor(public api:Api, public events: Events) {
 
     }
 

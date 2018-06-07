@@ -34,6 +34,9 @@ import {BudgetMenuComponent} from "../../components/budgetmenu/budgetmenu";
 import {Workforce} from "../../components/workforce/workforce";
 import {Expenditure} from "../../components/expenditure/expenditure";
 import {KPIComponent} from "../../components/kpi/kpi";
+import {StatisticsComponent} from "../../components/statistics/statistics";
+import {AccountComponent} from "../../components/account/account";
+import {SettingsComponent} from "../../components/settings/settings";
 
 @IonicPage()
 @Component({
@@ -89,25 +92,11 @@ export class Root {
 
       root.events.subscribe("header-load-page", (param) => {
         this.upateUserInfo(this.current_user.username);
-        this.loadFixedMenu(this.fixedMenuHost.viewContainerRef,FixedMenuComponent,param)
-        this.loadContentView(param)
+        this.loadFixedMenu(param)
+        this.loadContentView(param+"1")
       })
       root.events.subscribe("header-toggle-menu", (menuId) => {
-        switch (menuId){
-          case "help":
-            this.loadMenu(this.helpMenuHost.viewContainerRef,HelpMenuComponent,menuId)
-            this.toggleHelpMenu();
-            break;
-          case "budget":
-            this.loadMenu(this.budgetMenuHost.viewContainerRef,BudgetMenuComponent,menuId)
-            this.toggleBudgetMenu();
-            break;
-          default:
-            this.loadMenu(this.mainMenuHost.viewContainerRef,MenuComponent,menuId)
-            this.toggleMainMenu();
-            break;
-        }
-
+       this.loadMenu(menuId)
       })
       root.events.subscribe("header-user-login", () => {
         this._doLogout()
@@ -119,6 +108,10 @@ export class Root {
        // console.log(account)
         this._doLogin(account)
       });
+      root.events.subscribe("fixedmenu-click-item", (param) =>{
+        console.log(param,param["processName"]+param["taskID"])
+      })
+
       root.events.subscribe("menu-click-item", (param) => {
             console.log(param)
         this.toggleMainMenu();
@@ -211,40 +204,68 @@ export class Root {
         }
         else{
           this.upateUserInfo(this.current_user.username);
-          this.loadFixedMenu(this.fixedMenuHost.viewContainerRef,FixedMenuComponent,"home")
-          // this.loadMenu(this.helpMenuHost.viewContainerRef,MenuComponent,"dashboard")
+          this.loadFixedMenu("home")
+          this.loadContentView("mainpage1")
         }
       })
     }
 
-    public loadFixedMenu(viewContainerRef,component,menuID){
-      let ref =  this._loadComponent(viewContainerRef,component)
+    public loadFixedMenu(menuID){
+      let ref =  this._loadComponent(this.fixedMenuHost.viewContainerRef,FixedMenuComponent)
       ref.instance.setMenu(menuID)
     }
 
-    public loadMenu(viewContainerRef,component,menuID){
-      let ref =  this._loadComponent(viewContainerRef,component)
-      ref.instance.initialiazation(this.current_user,menuID)
+    public loadMenu(menuID){
+
+      switch (menuID){
+        case "help":{
+          let ref = this._loadComponent(this.helpMenuHost.viewContainerRef,HelpMenuComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
+          this.toggleHelpMenu();
+          break;
+        }
+
+        case "budget":{
+          let ref = this._loadComponent(this.budgetMenuHost.viewContainerRef,BudgetMenuComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
+          this.toggleBudgetMenu();
+          break;
+        }
+
+        default:{
+          let ref = this._loadComponent(this.mainMenuHost.viewContainerRef,MenuComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
+          this.toggleMainMenu();
+          break;
+        }
+
+      }
+
+
+      // ref.instance.initialiazation(this.current_user,menuID)
     }
 
     public loadContentView(menuID){
       switch (menuID) {
-        case 'statistics': {
-          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
-          ref.instance.initialiazation()
+        case 'statistics1':
+        case 'dashboard1':{
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,StatisticsComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
-        case 'account': {
-          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+        case 'account1': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,AccountComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
-        case 'settings': {
-          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
+        case 'settings1': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,SettingsComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
         default : {
           let ref = this._loadComponent(this.contentHost.viewContainerRef,KPIComponent)
-          ref.instance.initialiazation()
+          ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
       }
