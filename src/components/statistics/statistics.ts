@@ -15,7 +15,7 @@ import {Api} from "../../services/api.service";
 })
 export class StatisticsComponent {
 
-    public formData = [];
+    public hiredEmployees =  [];
     public formTitle:any;
 
 
@@ -34,16 +34,17 @@ export class StatisticsComponent {
     }
 
     initialiazation(current_user,menuID) {
-      console.log(menuID)
+
       let root = this
       let url = "/api/general/querykpidata"+"?username="+current_user.username
       this.api.get(url).subscribe((resp)=>{
-        console.log(resp)
+        root.hiredEmployees = resp["hiredEmployees"]
+        console.log(root)
       })
     }
 
     fillingData(originalData) {
-        this.formData = [];
+
         // let titleList = [];
 
     }

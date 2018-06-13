@@ -15,9 +15,11 @@ import {Api} from "../../services/api.service";
 })
 export class KPIComponent {
 
-    public formData = [];
-    public formTitle:any;
-
+    public hiredEmployees = [];
+    public workforce=[];
+  public actions=[];
+  public resources=[];
+  public visionarycompetition=[];
 
     constructor(public api:Api,
                 public events: Events) {
@@ -34,16 +36,21 @@ export class KPIComponent {
     }
 
     initialiazation(current_user,menuID) {
-      console.log(menuID)
+
       let root = this
       let url = "/api/general/querykpidata"+"?username="+current_user.username
       this.api.get(url).subscribe((resp)=>{
-        console.log(resp)
+        root.hiredEmployees = resp["hiredEmployees"]
+        root.workforce = resp["workforce"]
+        root.actions = resp["actions"]
+        root.resources = resp["resources"]
+        root.visionarycompetition = resp["visionarycompetition"]
+        console.log(root.resources)
       })
     }
 
     fillingData(originalData) {
-        this.formData = [];
+
         // let titleList = [];
 
     }

@@ -110,6 +110,7 @@ export class Root {
       });
       root.events.subscribe("fixedmenu-click-item", (param) =>{
         console.log(param,param["processName"]+param["taskID"])
+        this.loadContentView(param["processName"]+param["taskID"])
       })
 
       root.events.subscribe("menu-click-item", (param) => {
