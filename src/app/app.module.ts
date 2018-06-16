@@ -42,6 +42,7 @@ import {KPIComponent} from "../components/kpi/kpi";
 import {StatisticsComponent} from "../components/statistics/statistics";
 import {AccountComponent} from "../components/account/account";
 import {SettingsComponent} from "../components/settings/settings";
+import {KPI2Component} from "../components/kpi2/kpi2";
 
 
 @NgModule({
@@ -49,7 +50,7 @@ import {SettingsComponent} from "../components/settings/settings";
     Root,Welcome,
     MainMenuDirective,ContentDirective,HelpMenuDirective,FixedMenuDirective,BudgetMenuDirective,StatusDirective,MessagesDirective,
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,
+    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component,
     EDPWebApp,
     Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure
   ],
@@ -66,7 +67,7 @@ import {SettingsComponent} from "../components/settings/settings";
     Root,Welcome,
     Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
-    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent
+    StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component
   ],
   providers: [
     Api,

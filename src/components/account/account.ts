@@ -15,8 +15,10 @@ import {Api} from "../../services/api.service";
 })
 export class AccountComponent {
 
-    public formData = [];
-    public formTitle:any;
+    public data_profitAndLoss = [];
+    public data_balance= [];
+    public data_cashflow= [];
+    public data_total= [];
 
 
     constructor(public api:Api,
@@ -36,14 +38,28 @@ export class AccountComponent {
     initialiazation(current_user,menuID) {
       console.log(menuID)
       let root = this
-      let url = "/api/general/querykpidata"+"?username="+current_user.username
-      this.api.get(url).subscribe((resp)=>{
-        console.log(resp)
+      let url = "/api/account/getaccountinfo"+"?username="+current_user.username
+      this.api.get(url).subscribe((res)=>{
+        let resp = JSON.parse(JSON.stringify(res))
+
+        root.data_profitAndLoss = resp.filter(function (d) {
+          return d.accountDescType == "PL"
+        })
+        root.data_balance = resp.filter(function (d) {
+          return d.accountDescType == "BALANCE"
+        })
+        root.data_cashflow = resp.filter(function (d) {
+          return d.accountDescType == "CF"
+        })
+        root.data_total = resp.filter(function (d) {
+          return d.summaryFLag == true
+        })
+        console.log(root.data_balance)
       })
     }
 
     fillingData(originalData) {
-        this.formData = [];
+
         // let titleList = [];
 
     }

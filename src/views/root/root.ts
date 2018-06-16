@@ -37,6 +37,7 @@ import {KPIComponent} from "../../components/kpi/kpi";
 import {StatisticsComponent} from "../../components/statistics/statistics";
 import {AccountComponent} from "../../components/account/account";
 import {SettingsComponent} from "../../components/settings/settings";
+import {KPI2Component} from "../../components/kpi2/kpi2";
 
 @IonicPage()
 @Component({
@@ -261,6 +262,11 @@ export class Root {
         }
         case 'settings1': {
           let ref = this._loadComponent(this.contentHost.viewContainerRef,SettingsComponent)
+          ref.instance.initialiazation(this.current_user,menuID)
+          break;
+        }
+        case 'mainpage2': {
+          let ref = this._loadComponent(this.contentHost.viewContainerRef,KPI2Component)
           ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
