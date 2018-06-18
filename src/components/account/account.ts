@@ -15,10 +15,8 @@ import {Api} from "../../services/api.service";
 })
 export class AccountComponent {
 
-    public data_profitAndLoss = [];
-    public data_balance= [];
-    public data_cashflow= [];
-    public data_total= [];
+    public formData = [];
+
 
 
     constructor(public api:Api,
@@ -36,25 +34,39 @@ export class AccountComponent {
     }
 
     initialiazation(current_user,menuID) {
-      console.log(menuID)
       let root = this
       let url = "/api/account/getaccountinfo"+"?username="+current_user.username
       this.api.get(url).subscribe((res)=>{
         let resp = JSON.parse(JSON.stringify(res))
+        switch (menuID){
+          case "account2":{
+            root.formData = resp.filter(function (d) {
+              return d.accountDescType == "PL"
+            })
+            break;
+          }
+          case "account3":{
+            root.formData = resp.filter(function (d) {
+              return d.accountDescType == "BALANCE"
+            })
+            break;
+          }
+          case "account4":{
+            root.formData = resp.filter(function (d) {
+              return d.accountDescType == "CF"
+            })
+            break;
+          }
+          default:{
+            root.formData = resp.filter(function (d) {
+              return d.summaryFLag == true
+            })
+            break;
+          }
+        }
 
-        root.data_profitAndLoss = resp.filter(function (d) {
-          return d.accountDescType == "PL"
-        })
-        root.data_balance = resp.filter(function (d) {
-          return d.accountDescType == "BALANCE"
-        })
-        root.data_cashflow = resp.filter(function (d) {
-          return d.accountDescType == "CF"
-        })
-        root.data_total = resp.filter(function (d) {
-          return d.summaryFLag == true
-        })
-        console.log(root.data_balance)
+
+        console.log(root.formData)
       })
     }
 

@@ -255,7 +255,10 @@ export class Root {
           ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
-        case 'account1': {
+        case 'account1':
+        case 'account2':
+        case 'account3':
+        case 'account4': {
           let ref = this._loadComponent(this.contentHost.viewContainerRef,AccountComponent)
           ref.instance.initialiazation(this.current_user,menuID)
           break;

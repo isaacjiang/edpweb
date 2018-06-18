@@ -17,7 +17,7 @@
             <span>Salary Offered</span>
           </ion-col>
         </ion-row>
-
+        <ion-scroll scrollY style="height:100%;">
         <ion-row class="trow"  nowrap *ngFor="let line of hiredEmployees;let indexRow = index" (mousemove)="selectLine($event)">
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.employeeName  }}</span>
@@ -28,7 +28,7 @@
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.HiredBy.salaryOffer }}</span>
           </ion-col>
-        </ion-row>
+        </ion-row></ion-scroll>
       </ion-card>
     </ion-col>
     <ion-col col-6>
@@ -51,7 +51,7 @@
             <span>Contract</span>
           </ion-col>
         </ion-row>
-
+        <ion-scroll scrollY style="height:100%;">
         <ion-row class="trow"  nowrap *ngFor="let line of workforce;let indexRow = index" (mousemove)="selectLine($event)">
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.functions  }}</span>
@@ -65,7 +65,7 @@
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.adjustedworkforce_contract }}</span>
           </ion-col>
-        </ion-row>
+        </ion-row></ion-scroll>
       </ion-card>
     </ion-col>
   </ion-row>
@@ -90,10 +90,11 @@
             <span>Stress</span>
           </ion-col>
         </ion-row>
-
-        <ion-row class="trow"   *ngFor="let line of actions;let indexRow = index" (mousemove)="selectLine($event)">
+        <ion-scroll scrollY style="height:100%;">
+        <ion-row class="trow"  nowrap text-wrap *ngFor="let line of actions;let indexRow = index" (mousemove)="selectLine($event)">
           <ion-col col-6 class="tcol"  (click)="selectCell(indexRow,indexCol)">
-            <span>{{ line.action.actionName.length>35?line.action.actionName.substr(0,35)+"...":line.action.actionName  }}</span>
+            <ion-scroll scrollX="true" style="height:100%;width: 100%">
+              <span>{{ line.action.actionName  }}</span></ion-scroll>
           </ion-col>
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.action.adaptabilityIndex  }}</span>
@@ -104,7 +105,7 @@
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.action.stressIndex }}</span>
           </ion-col>
-        </ion-row>
+        </ion-row></ion-scroll>
       </ion-card>
     </ion-col>
     <ion-col col-6>
@@ -127,7 +128,7 @@
             <span>$MPP</span>
           </ion-col>
         </ion-row>
-
+        <ion-scroll scrollY style="height:100%;">
         <ion-row class="trow"  nowrap *ngFor="let line of resources;let indexRow = index" (mousemove)="selectLine($event)">
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.resource.resourceType  }}</span>
@@ -141,7 +142,7 @@
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.resource.cost }}</span>
           </ion-col>
-        </ion-row>
+        </ion-row></ion-scroll>
       </ion-card>
     </ion-col>
   </ion-row>
