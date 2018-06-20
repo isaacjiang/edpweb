@@ -14,8 +14,8 @@ export class Expenditure {
 
   private task_info:any
   private tabs:any ;
-  private parameters:any ={tabs_value:[]};
-  private workforce: any={};
+  private parameters:any ={tabs_value:["DISCRETIONARY EXPENDITURE"]};
+  private acc_budgets: any={};
   private uploader: FileUploader;
 
   constructor(public events: Events,
@@ -74,139 +74,67 @@ export class Expenditure {
   private initialization(root,params){
 
     this.task_info = params.params;
-    if (params.data){
-      params.data.forecast.b2b = params.data.forecast.b2b ? params.data.forecast.b2b : 0
-      params.data.forecast.b2c = params.data.forecast.b2c ? params.data.forecast.b2c : 0
-      params.data.forecast.newoffering = params.data.forecast.newoffering ? params.data.forecast.newoffering : 0
-      var forecast = params.data.forecast.b2b + params.data.forecast.b2c + params.data.forecast.newoffering
-      //console.log(forecast)
-      params.data.workforce_def.forEach(function (dv) {
 
-
-        var v = params.data.valueatstart.filter(function (sv) {
-          return sv.functions == dv.functions
-        })
-
-        if (v.length > 0) {
-          dv.valueatstart_core = parseInt(v[0].adjustedworkforce_core)
-          dv.valueatstart_contract = parseInt(v[0].adjustedworkforce_contract)
-          dv.valueatstart_total = parseInt(v[0].adjustedworkforce_total)
-        }
-        else {
-          dv.valueatstart_core = 0
-          dv.valueatstart_contract = 0
-          dv.valueatstart_total = 0
-
-
-          if (root.task_info.period == 1 && root.task_info.companyName == 'LegacyCo') {
-            if (dv.functions == 'Leadship') {
-              dv.valueatstart_total = 10, dv.valueatstart_core = 10, dv.valueatstart_contract = 0
-            }
-            if (dv.functions == 'Logistics') {
-              dv.valueatstart_total = 369, dv.valueatstart_core = 369, dv.valueatstart_contract = 0
-            }
-            if (dv.functions == 'Marketing') {
-              dv.valueatstart_total = 492, dv.valueatstart_core = 487, dv.valueatstart_contract = 5
-            }
-            if (dv.functions == 'Sales') {
-              dv.valueatstart_total = 164, dv.valueatstart_core = 82, dv.valueatstart_contract = 82
-            }
-            if (dv.functions == 'Product Development') {
-              dv.valueatstart_total = 123, dv.valueatstart_core = 123, dv.valueatstart_contract = 0
-            }
-            if (dv.functions == 'Social Media') {
-              dv.valueatstart_total = 35, dv.valueatstart_core = 24, dv.valueatstart_contract = 11
-            }
-          }
-          if (root.task_info.period == 2 && root.task_info.companyName == 'NewCo') {
-            var pd = params.data['negotiation']['negotiation']['funding']['additinalProductDeveloperNumber']
-            pd = pd ? pd : 0
-            var sl = params.data['negotiation']['negotiation']['funding']['additinalSalesNumber']
-            sl = sl ? sl : 0
-
-            if (dv.functions == 'Sales') {
-              dv.valueatstart_total = sl, dv.valueatstart_core = parseInt((sl / 2).toString()), dv.valueatstart_contract = parseInt((sl / 2).toString())
-            }
-            if (dv.functions == 'Product Development') {
-              dv.valueatstart_total = pd, dv.valueatstart_core = pd, dv.valueatstart_contract = 0
-            }
-
-          }
-        }
-
-
-      })
-
-
-      for (let i=0;i<params.data.workforce_def.length;i++){
-        //  d.workforce_def[i].valueatstart_core = 0
-        // d.workforce_def[i].valueatstart_contract = 0
-        //d.workforce_def[i].valueatstart_total =  d.workforce_def[i].valueatstart_core+ d.workforce_def[i].valueatstart_contract
-
-        params.data.workforce_def[i].recommended_core =parseInt((forecast/(params.data.workforce_def[i].recommend_base)*(params.data.workforce_def[i].coreEmployeeRate)).toString())
-        params.data.workforce_def[i].recommended_contract =parseInt( (forecast/(params.data.workforce_def[i].recommend_base)*(1-params.data.workforce_def[i].coreEmployeeRate)).toString())
-        params.data.workforce_def[i].recommended_total=params.data.workforce_def[i].recommended_contract + params.data.workforce_def[i].recommended_core
-      }
-      //root.workforce = params.workforce_def
-      //console.log($scope.workforce )
-    }
-
-    params.data.workforce_def.forEach(workforce=>{
-      this.workforce[workforce['functions']] =workforce
-      this.parameters.tabs_value.push(workforce['functions'])
-    });
-    this.tabs = this.parameters.tabs_value[0]
-   // console.log(this.workforce )
+    console.log(params)
   }
 
   private onTabChange(e){
 
   }
-  private onChange(wf){
-   // console.log(wf)
-    if (wf.adjustment_core != undefined || wf.adjustment_contract != undefined){
-      wf.adjustment_core = wf.adjustment_core == undefined? 0: wf.adjustment_core
-      wf.adjustment_contract = wf.adjustment_contract == undefined? 0: wf.adjustment_contract
+  private onChange(){
+    if(this.task_info.companyName=='NewCo'){
+      if(this.acc_budgets.Niche1_AA==undefined){this.acc_budgets.Niche1_AA=0}
+      if(this.acc_budgets.Niche2_AA==undefined){this.acc_budgets.Niche2_AA=0}
+      if(this.acc_budgets.Niche3_AA==undefined){this.acc_budgets.Niche3_AA=0}
 
-      wf.adjustment_total =wf.adjustment_core + wf.adjustment_contract
+      if(this.acc_budgets.Niche1_DM==undefined){this.acc_budgets.Niche1_DM=0}
+      if(this.acc_budgets.Niche2_DM==undefined){this.acc_budgets.Niche2_DM=0}
+      if(this.acc_budgets.Niche3_DM==undefined){this.acc_budgets.Niche3_DM=0}
 
-      wf.adjustedworkforce_core = this.formatNum(wf.valueatstart_core + wf.adjustment_core)
-      wf.adjustedworkforce_contract = this.formatNum(wf.valueatstart_contract + wf.adjustment_contract)
-      wf.adjustedworkforce_total = this.formatNum(wf.valueatstart_total + wf.adjustment_total)
+      if(this.acc_budgets.Niche1_PD==undefined){this.acc_budgets.Niche1_PD=0}
+      if(this.acc_budgets.Niche2_PD==undefined){this.acc_budgets.Niche2_PD=0}
+      if(this.acc_budgets.Niche3_PD==undefined){this.acc_budgets.Niche3_PD=0}
 
+      this.acc_budgets.total_AA = this.formatNum(parseInt(this.acc_budgets.Niche1_AA) + parseInt(this.acc_budgets.Niche2_AA)+ parseInt(this.acc_budgets.Niche3_AA))
+      this.acc_budgets.total_PD= this.formatNum(parseInt(this.acc_budgets.Niche1_PD) + parseInt(this.acc_budgets.Niche2_PD)+ parseInt(this.acc_budgets.Niche3_PD))
+      this.acc_budgets.total_DM = this.formatNum(parseInt(this.acc_budgets.Niche1_DM) + parseInt(this.acc_budgets.Niche2_DM)+ parseInt(this.acc_budgets.Niche3_DM))
 
-      wf.adjustmentcost_core = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_core *
-        (wf.adjustment_core > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
-      wf.adjustmentcost_contract = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_contract *
-        (wf.adjustment_contract > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
-      wf.adjustmentcost_total = this.formatNum((wf.avWage + wf.avExpense) * wf.adjustment_total
-        * (wf.adjustment_total > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
-
-      wf.adjustwages_core = this.formatNum(wf.avWage * (wf.valueatstart_core + wf.adjustment_core))
-      wf.adjustwages_contract = this.formatNum(wf.avWage * (wf.valueatstart_contract + wf.adjustment_contract))
-      wf.adjustwages_total = this.formatNum(wf.avWage * (wf.valueatstart_total + wf.adjustment_total))
-
-      wf.adjustexpenses_core = this.formatNum(wf.avExpense * (wf.valueatstart_core + wf.adjustment_core))
-      wf.adjustexpenses_contract = this.formatNum(wf.avExpense * (wf.valueatstart_contract + wf.adjustment_contract))
-      wf.adjustexpenses_total = this.formatNum(wf.avExpense * (wf.valueatstart_total + wf.adjustment_total))
-
-      wf.workforcecost_total = this.formatNum((wf.avWage + wf.avExpense) * (wf.valueatstart_total + wf.adjustment_total)
-        + (wf.avWage + wf.avExpense) * wf.adjustment_total * (wf.adjustment_total > 0 ? wf.costOfHire : (wf.costOfFire * (-1))))
+      this.acc_budgets.Niche1_total = this.formatNum(parseInt(this.acc_budgets.Niche1_AA) + parseInt(this.acc_budgets.Niche1_PD)+ parseInt(this.acc_budgets.Niche1_DM))
+      this.acc_budgets.Niche2_total = this.formatNum(parseInt(this.acc_budgets.Niche2_AA) + parseInt(this.acc_budgets.Niche2_PD)+ parseInt(this.acc_budgets.Niche2_DM))
+      this.acc_budgets.Niche3_total = this.formatNum(parseInt(this.acc_budgets.Niche3_AA) + parseInt(this.acc_budgets.Niche3_PD)+ parseInt(this.acc_budgets.Niche3_DM))
+      this.acc_budgets.total_total =this.formatNum(parseInt(this.acc_budgets.Niche1_AA) + parseInt(this.acc_budgets.Niche1_PD)+ parseInt(this.acc_budgets.Niche1_DM)+
+        parseInt(this.acc_budgets.Niche2_AA) + parseInt(this.acc_budgets.Niche2_PD)+ parseInt(this.acc_budgets.Niche2_DM)+
+        parseInt(this.acc_budgets.Niche3_AA) + parseInt(this.acc_budgets.Niche3_PD)+ parseInt(this.acc_budgets.Niche3_DM))
     }
+    else{
+      if(this.acc_budgets.B2B_AA==undefined){this.acc_budgets.B2B_AA=0}
+      if(this.acc_budgets.B2C_AA==undefined){this.acc_budgets.B2C_AA=0}
+      if(this.acc_budgets.B2B_PD==undefined){this.acc_budgets.B2B_PD=0}
+      if(this.acc_budgets.B2C_PD==undefined){this.acc_budgets.B2C_PD=0}
+      if(this.acc_budgets.B2B_DM==undefined){this.acc_budgets.B2B_DM=0}
+      if(this.acc_budgets.B2C_DM==undefined){this.acc_budgets.B2C_DM=0}
+
+      this.acc_budgets.total_AA = this.formatNum(parseInt(this.acc_budgets.B2B_AA) + parseInt(this.acc_budgets.B2C_AA))
+      this.acc_budgets.total_PD= this.formatNum(parseInt(this.acc_budgets.B2B_PD) + parseInt(this.acc_budgets.B2C_PD))
+      this.acc_budgets.total_DM = this.formatNum(parseInt(this.acc_budgets.B2B_DM) + parseInt(this.acc_budgets.B2C_DM))
+
+      this.acc_budgets.B2B_total = this.formatNum(parseInt(this.acc_budgets.B2B_AA) + parseInt(this.acc_budgets.B2B_PD)+ parseInt(this.acc_budgets.B2B_DM))
+      this.acc_budgets.B2C_total = this.formatNum(parseInt(this.acc_budgets.B2C_AA) + parseInt(this.acc_budgets.B2C_PD)+ parseInt(this.acc_budgets.B2C_DM))
+      this.acc_budgets.total_total =this.formatNum(parseInt(this.acc_budgets.B2B_AA) + parseInt(this.acc_budgets.B2B_PD)+ parseInt(this.acc_budgets.B2B_DM)+parseInt(this.acc_budgets.B2C_AA) + parseInt(this.acc_budgets.B2C_PD)+ parseInt(this.acc_budgets.B2C_DM))
+
+    }
+
   }
 
   private submit(){
-    let workforce = [];
-      Object.keys(this.workforce).forEach((fun)=>{
-        workforce.push(this.workforce[fun])
-    })
-    this.api.post("/api/dtools/workforce",{
+
+    this.api.post("/api/dtools/budget",{
       username: this.task_info.username,
       taskID:this.task_info.taskID,
       companyName :this.task_info.companyName,
       teamName : this.task_info.teamName,
       period:this.task_info.period,
-      workforce:workforce
+      acc_budgets:this.acc_budgets
     }).subscribe(resp=>{
      // console.log(resp)
       this.dismiss()

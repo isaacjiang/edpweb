@@ -25,229 +25,242 @@
     </ion-buttons>
   </ion-navbar>
   <ion-toolbar >
-    <ion-segment [(ngModel)]="tabs" item-start (ionChange)="onTabChange()">
+    <ion-segment [(ngModel)]="tabs" item-start (ionChange)="onTabChange()"  >
       <ion-segment-button [value]="tab" *ngFor="let tab of parameters.tabs_value">
         {{ tab.toUpperCase()}}
       </ion-segment-button>
-      <ion-segment-button value="summary">
-        SUMMARY
-      </ion-segment-button>
+
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-grid *ngIf="tabs!='summary'">
-    <ion-row>
+  <ion-grid *ngIf="task_info.companyName=='LegacyCo'">
 
-      <ion-col col-3>
+    <ion-row>
+      <ion-col col-3 text-center>
+          <ion-label  style="margin-top:23px"><h5> Advertising :</h5></ion-label>
       </ion-col>
       <ion-col col-3>
-        <label text-center>
-          <h3> Core </h3>
-        </label>
+        <ion-item>
+            <ion-label color="primary" floating>Rev.A</ion-label>
+            <ion-input [(ngModel)]="acc_budgets.B2B_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
       </ion-col>
       <ion-col col-3>
-        <label text-center>
-          <h3> Contingency </h3>
-        </label>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.B</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2C_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
       </ion-col>
       <ion-col col-3>
-        <label text-center>
-          <h3> Total </h3>
-        </label>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_AA"   readonly></ion-input>
+        </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
 
-      <ion-col col-3>
-        <label text-center><h4>
-          Expenditure at start of Period :
-        </h4>
-        </label>
+    <ion-row>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Salesforce :</h5></ion-label>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].valueatstart_core}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.A</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2B_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].valueatstart_contract}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.B</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2C_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
         </ion-item>
       </ion-col>
-      <ion-col col-3 >
-        <ion-item text-center>
-          <h2>{{workforce[tabs].valueatstart_total}} </h2>
+      <ion-col col-3>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_DM"   readonly></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Size recommended by HR :
-        </h4>
-        </label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].recommended_core}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].recommended_contract}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3 >
-        <ion-item text-center>
-          <h2>{{workforce[tabs].recommended_total}} </h2>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Adjustment to Expenditure :
-        </h4>
-        </label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-range  pin="true"  [(ngModel)]="workforce[tabs].adjustment_core" min="-1000" max="1000"  (ionChange)="onChange(workforce[tabs])" style="padding-top:20px">
 
-        </ion-range>
-      </ion-col>
-      <ion-col col-3>
-        <ion-range pin="true"  [(ngModel)]="workforce[tabs].adjustment_contract" min="-1000" max="1000"(ionChange)="onChange(workforce[tabs])" style="padding-top:20px">
-        </ion-range>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustment_total}} </h2>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-<ion-item-divider></ion-item-divider>
     <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Adjusted Expenditure :
-        </h4>
-        </label>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Social Media :</h5></ion-label>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustedworkforce_core}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.A</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2B_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustedworkforce_contract}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.B</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2C_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustedworkforce_total}} </h2>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_PD"   readonly></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
+
     <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Cost of Expenditure Adjustment :
-        </h4>
-        </label>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Totals :</h5></ion-label>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustmentcost_core}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.A</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2B_total" readonly></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustmentcost_contract}} </h2>
+        <ion-item>
+          <ion-label color="primary" floating>Rev.B</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.B2C_total" readonly></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustmentcost_total}} </h2>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Business Function Wages :
-        </h4>
-        </label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustwages_core}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustwages_contract}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustwages_total}} </h2>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_total"   readonly></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-3>
-        <label text-center><h4>
-          Calculated Expenses :
-        </h4>
-        </label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustexpenses_core}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustexpenses_contract}} </h2>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3 >
-        <ion-item text-center>
-          <h2>{{workforce[tabs].adjustexpenses_total}} </h2>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+
 
   </ion-grid>
+  <ion-grid *ngIf="task_info.companyName=='NewCo'">
 
-  <ion-grid *ngIf="tabs=='summary'">
-
-    <ion-row *ngFor="let tab of parameters.tabs_value">
-      <ion-col col-2></ion-col>
-
-      <ion-col col-4>
-        <label text-start><h4>
-          {{workforce[tab].functions}}
-        </h4></label>
-
+    <ion-row>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Advertising :</h5></ion-label>
       </ion-col>
-      <ion-col col-4>
-        <ion-item text-end>
-          <h2>{{workforce[tab].workforcecost_total}} </h2>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#1</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche1_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
         </ion-item>
       </ion-col>
       <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#2</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche2_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#3 </ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche3_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_AA"   readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
 
+    <ion-row>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Salesforce :</h5></ion-label>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#1</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche1_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#2</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche2_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#3 </ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche3_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_DM"   readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Social Media :</h5></ion-label>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#1</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche1_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#2</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche2_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#3 </ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche3_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_PD"   readonly></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-3 text-center>
+        <ion-label  style="margin-top:23px"><h5> Totals :</h5></ion-label>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#1</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche1_total" readonly></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#2</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche2_total" readonly></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-2>
+        <ion-item>
+          <ion-label color="primary" floating>Niche#3</ion-label>
+          <ion-input [(ngModel)]="acc_budgets.Niche3_total" readonly></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-3>
+        <ion-item style="margin-top:23px">
+          <ion-label>Total</ion-label>
+          <ion-input  [(ngModel)]="acc_budgets.total_total"   readonly></ion-input>
+        </ion-item>
       </ion-col>
     </ion-row>
 
 
-
   </ion-grid>
+
 
 
 </ion-content>

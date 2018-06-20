@@ -8,7 +8,7 @@
 
         <ion-row class="trow"  nowrap>
           <ion-col class="tcol" text-center  >
-            <span>Employee Name </span>
+            <span>Employee Name</span>
           </ion-col>
           <ion-col class="tcol" text-center >
             <span>Title</span>
@@ -28,7 +28,8 @@
           <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.HiredBy.salaryOffer }}</span>
           </ion-col>
-        </ion-row></ion-scroll>
+        </ion-row>
+        </ion-scroll>
       </ion-card>
     </ion-col>
     <ion-col col-6>
@@ -36,12 +37,11 @@
         <ion-card-header>
           Workforce
         </ion-card-header>
-
         <ion-row class="trow"  nowrap>
-          <ion-col class="tcol" text-center  >
+          <ion-col class="tcol" text-center>
             <span>Functions</span>
           </ion-col>
-          <ion-col class="tcol" text-center >
+          <ion-col class="tcol" text-center>
             <span>Total</span>
           </ion-col>
           <ion-col class="tcol" text-center>
@@ -75,7 +75,6 @@
         <ion-card-header>
           Actions
         </ion-card-header>
-
         <ion-row class="trow"  >
           <ion-col col-6 class="tcol" text-center  >
             <span>Name </span>
@@ -92,20 +91,18 @@
         </ion-row>
         <ion-scroll scrollY style="height:100%;">
         <ion-row class="trow" nowrap *ngFor="let line of actions;let indexRow = index" (mousemove)="selectLine($event)">
-
           <ion-col col-6 class="tcol" (click)="selectCell(indexRow,indexCol)">
             <ion-scroll scrollX="true" style="height:100%;width: 100%">
           <span>{{ line.action.actionName  }}</span>
             </ion-scroll>
           </ion-col>
-
-          <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
+          <ion-col class="tcol" text-center (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.action.adaptabilityIndex  }}</span>
           </ion-col>
-          <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
+          <ion-col class="tcol" text-center (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.action.competenceIndex }}</span>
           </ion-col>
-          <ion-col class="tcol" text-center  (click)="selectCell(indexRow,indexCol)">
+          <ion-col class="tcol" text-center (click)="selectCell(indexRow,indexCol)">
             <span>{{ line.action.stressIndex }}</span>
           </ion-col>
         </ion-row>

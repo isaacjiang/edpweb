@@ -414,9 +414,6 @@ export class Root {
   }
 
     private _showExpenditure(params){
-
-
-
        this.modalCtl.create(Expenditure,{params:params,data:{}},{enableBackdropDismiss:false}).present()
 
     }
