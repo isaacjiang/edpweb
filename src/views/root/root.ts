@@ -38,6 +38,7 @@ import {StatisticsComponent} from "../../components/statistics/statistics";
 import {AccountComponent} from "../../components/account/account";
 import {SettingsComponent} from "../../components/settings/settings";
 import {KPI2Component} from "../../components/kpi2/kpi2";
+import {Negotiation1} from "../../components/negotiation1/negotiation1";
 
 @IonicPage()
 @Component({
@@ -110,12 +111,12 @@ export class Root {
         this._doLogin(account)
       });
       root.events.subscribe("fixedmenu-click-item", (param) =>{
-        console.log(param,param["processName"]+param["taskID"])
+        //console.log(param,param["processName"]+param["taskID"])
         this.loadContentView(param["processName"]+param["taskID"])
       })
 
       root.events.subscribe("menu-click-item", (param) => {
-            console.log(param)
+          //  console.log(param)
         this.toggleMainMenu();
         switch (param.taskID){
           case "10001":
@@ -380,9 +381,6 @@ export class Root {
           this.modalCtl.create(Workforce,{params:params,data:workforce},{enableBackdropDismiss:false}).present();
         }
       )
-
-
-
   }
 
     private _showResource(params){
@@ -415,7 +413,6 @@ export class Root {
 
     private _showExpenditure(params){
        this.modalCtl.create(Expenditure,{params:params,data:{}},{enableBackdropDismiss:false}).present()
-
     }
 
     private _showVisionarycompetition(params){
@@ -521,12 +518,85 @@ export class Root {
         +"&teamName="+ params.teamName
         +"&period="+ params.period
 
-      this.api.get("/api/dtools/hiring"+urlParams)
-        .subscribe((employees)=>{
-            console.log(employees)
-            this.modalCtl.create(Hiring,{params:params,data:employees},{enableBackdropDismiss:false}).present();
+      this.api.get("/api/dtools/negotiate1"+urlParams)
+        .subscribe((data)=>{
+           console.log(data)
+           this.modalCtl.create(Negotiation1,{params:params,data:data},{enableBackdropDismiss:false}).present();
           }
         )
+
+      //
+      // var getInitData = function () {
+      //   $http({
+      //       method: 'GET',
+      //       url: "/api/dtools/negotiate1",
+      //       params: {
+      //         username: $rootScope.current_user.username,
+      //         taskID: task.taskID,
+      //         companyName: task.companyName,
+      //         teamName: task.teamName,
+      //         period: task.period
+      //       }
+      //     }
+      //   )
+      //     .success(function (data) {
+      //
+      //       $scope.negotiationhr_sales = []
+      //       $scope.negotiationhr_pd = []
+      //       $scope.negotiationhr_te = []
+      //       data.data.forEach(function (d) {
+      //         //d.src = '/photo/'+d.employeeName+'.GIF'
+      //         if (d.photo) {
+      //           d.url = "/files/download?filename=" + d.photo['filename'] +
+      //             "&id=" + d.photo['objectID'] + "&ctype=" + d.photo['content_type']
+      //         }
+      //
+      //         if (d.title == "Top Salespeople") {
+      //           $scope.negotiationhr_sales.push(d)
+      //         }
+      //         else if (d.title == "Technical Experts") {
+      //           $scope.negotiationhr_te.push(d)
+      //         }
+      //         else {
+      //           $scope.negotiationhr_pd.push(d)
+      //         }
+      //
+      //       })
+      //
+      //       //task data
+      //       if (data.taskdata != null && data.taskdata.negotiation != null) {
+      //         $scope.status = data.taskdata.status
+      //         $scope.selectedEmployees = []
+      //         data.taskdata.negotiation.selectedEmployees.forEach(function (d) {
+      //           //console.log(d)
+      //           // if (d.title=="Top Salespeople") {
+      //           //     $scope.negotiationhr_sales.forEach(function (e) {
+      //           //         //console.log(e.employeeID, d.employeeID,e)
+      //           //         if (e.employeeID == d.employeeID) {
+      //           //             e.selected = true
+      //           //         }
+      //           //     })}
+      //           // else if (d.title=="Technical Experts"){
+      //           //     $scope.negotiationhr_te.forEach(function (e) {
+      //           //         if (e.employeeID == d.employeeID) {
+      //           //             e.selected = true}
+      //           //     })}
+      //           // else{$scope.negotiationhr_pd.forEach(function (e) {
+      //           //     if (e.employeeID == d.employeeID) {e.selected = true}
+      //           // })}
+      //
+      //           $scope.toggle(d,$scope.selectedEmployees)
+      //
+      //         })
+      //
+      //         $scope.funding =data.taskdata.negotiation.funding
+      //         $scope.sumInfluenceSales =data.taskdata.negotiation.sumInfluenceSales
+      //         $scope.calculatedValues =data.taskdata.negotiation.calculatedValues
+      //         $scope.applyStatus = data.taskdata.status
+      //       }
+      //       console.log($scope.selectedEmployees)
+      //     })
+      // }
 
 
 

@@ -43,6 +43,7 @@ import {StatisticsComponent} from "../components/statistics/statistics";
 import {AccountComponent} from "../components/account/account";
 import {SettingsComponent} from "../components/settings/settings";
 import {KPI2Component} from "../components/kpi2/kpi2";
+import {Negotiation1} from "../components/negotiation1/negotiation1";
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import {KPI2Component} from "../components/kpi2/kpi2";
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component,
     EDPWebApp,
-    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure
+    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1
   ],
 
   imports: [
@@ -65,7 +66,7 @@ import {KPI2Component} from "../components/kpi2/kpi2";
   entryComponents: [
     EDPWebApp,
     Root,Welcome,
-    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,
+    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component
   ],
