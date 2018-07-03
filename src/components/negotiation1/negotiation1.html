@@ -1,92 +1,83 @@
 <ion-header>
   <ion-navbar color="primary" >
-
     <ion-title style="margin-left: -60px" >Human Resource</ion-title>
-
-
-
     <ion-buttons end style="margin-right: 30px">
-
-
       <button ion-button  icon-only (click)="clickFileInput()">
           <ion-icon name="document"></ion-icon>
         <input #fileUpload id="selectedFile" type="file" (change)="fileChange($event)" ng2FileSelect
                [uploader]="uploader" multiple style="display: none;">
         <!--<input type="file" id="selectedFile" (change)="fileChange($event)"  accept=".pdf" style="display: none">-->
       </button>
-
     </ion-buttons>
     <ion-buttons end style="margin-right: 25px">
       <button ion-button  icon-only (click)="openPdf(task_info['infoFile'])">
         <ion-icon name="information-circle"></ion-icon>
       </button>
     </ion-buttons>
-
     <ion-buttons end style="margin-right: 20px">
       <button ion-button icon-only  (click)="dismiss()">
         <ion-icon name="close"></ion-icon>
       </button>
-
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar >
+  <ion-toolbar>
     <ion-segment [(ngModel)]="tabs" item-start (ionChange)="onTabChange()">
       <ion-segment-button [value]="tab" *ngFor="let tab of parameters.tabs_value">
         {{ tab.toUpperCase()}}
       </ion-segment-button>
-
     </ion-segment>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div >
-  <ion-grid>
+  <ion-grid style="height: 100%" *ngIf="tabs=='HR'">
+    <ion-row>
+      <ion-col col-3 text-center> <span>Top Salespeople</span></ion-col>
+      <ion-col col-3 text-center> <span>Top Product Developer</span></ion-col>
+      <ion-col col-3 text-center> <span>Technical Experts</span></ion-col>
+      <ion-col col-3 text-center> <span>Competence Lost and Gained</span></ion-col>
+    </ion-row>
     <ion-row>
       <ion-col col-3>
         <ion-row style="border-bottom-width: 1px" *ngFor="let employee of negotiationhr_sales">
           <ion-col col-1>
           </ion-col>
           <ion-col col-1>
-            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px" (ionChange)="onChange(employee)"></ion-checkbox>
           </ion-col>
-          <ion-col >
+          <ion-col>
             <ion-item>
               <ion-avatar item-start>
                 <img src={{employee.url}}>
               </ion-avatar>
-              <h4>{{employee.employeeName}} </h4>
-              <h5>{{employee.title}} </h5>
+              <h4>{{employee.employeeName}}</h4>
+              <h5>{{employee.title}}</h5>
             </ion-item>
           </ion-col>
-
         </ion-row>
       </ion-col>
       <ion-col col-3>
         <ion-row style="border-bottom-width: 1px" *ngFor="let employee of negotiationhr_pd">
-
           <ion-col col-1>
-            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px" (ionChange)="onChange(employee)"></ion-checkbox>
           </ion-col>
           <ion-col >
             <ion-item>
               <ion-avatar item-start>
                 <img src={{employee.url}}>
               </ion-avatar>
-              <h4>{{employee.employeeName}} </h4>
-              <h5>{{employee.title}} </h5>
+              <h4>{{employee.employeeName}}</h4>
+              <h5>{{employee.title}}</h5>
             </ion-item>
           </ion-col>
-
         </ion-row>
       </ion-col>
       <ion-col col-3>
         <ion-row style="border-bottom-width: 1px" *ngFor="let employee of negotiationhr_te">
-
           <ion-col col-1>
-            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px"></ion-checkbox>
+            <ion-checkbox [(ngModel)]="employee.checked" style="padding-top:20px" (ionChange)="onChange(employee)"></ion-checkbox>
           </ion-col>
-          <ion-col >
+          <ion-col>
             <ion-item>
               <ion-avatar item-start>
                 <img src={{employee.url}}>
@@ -99,42 +90,166 @@
         </ion-row>
       </ion-col>
       <ion-col col-3>
-        <ion-row>
-          <ion-col >
-            <h4>  Marketing Loss:  {{calculatedValues.marketingLoss}} </h4>
+        <ion-row style="height: 20%;margin-top: 10%">
+          <ion-col>
+            <span>  Marketing Loss:  {{calculatedValues.marketingLoss}} </span>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col >
-            <h4> Development Loss:  {{calculatedValues.developmentLoss}} </h4>
+        <ion-row style="height: 20%">
+          <ion-col>
+            <span> Development Loss:  {{calculatedValues.developmentLoss}} </span>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col >
-            <h4>  Marketing Gain:  {{calculatedValues.marketingGain }} </h4>
+        <ion-row style="height: 20%">
+          <ion-col>
+            <span>  Marketing Gain:  {{calculatedValues.marketingGain }} </span>
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col >
-            <h4>  Development Gain:  {{calculatedValues.developmentGain}} </h4>
+        <ion-row style="height: 20%">
+          <ion-col>
+            <span>  Development Gain:  {{calculatedValues.developmentGain}} </span>
           </ion-col>
         </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col style="margin-left: 30px"> <h5>  Influence attained by niche market </h5></ion-col>
+    </ion-row >
+    <ion-row>
+      <ion-col col-3 text-center> <span> VRKidEd:  {{ sumInfluenceSales.VRKidEd }}  </span></ion-col>
+      <ion-col col-3 text-center> <span> VRGames : {{ sumInfluenceSales.VRGames }}</span></ion-col>
+      <ion-col col-3 text-center> <span> AdEdVR : {{ sumInfluenceSales.AdEdVR }}  </span></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-3 text-center> <span> GovVR : {{ sumInfluenceSales.GovVR }} </span></ion-col>
+      <ion-col col-3 text-center> <span>MilitaryVR :{{ sumInfluenceSales.MilitaryVR }}</span></ion-col>
+      <ion-col col-3 text-center> <span>VRCinema : {{ sumInfluenceSales.VRCinema }}  </span></ion-col>
+    </ion-row>
 
+  </ion-grid>
 
+  <ion-grid *ngIf="tabs=='Funding'">
+    <ion-row style="border-bottom-width: 1px" >
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="margin-top: 10px">
+          <h5>Product Development Team # </h5>
+      </ion-col>
 
+      <ion-col col-2>
+        <ion-input type="text" [placeholder]="funding.additinalProductDeveloperNumber" [(ngModel)]="funding.additinalProductDeveloperNumber" disabled style="padding-top:20px">
+        </ion-input>
+      </ion-col>
+      <ion-col col-4 >
+        <ion-range pin="true" snaps="true" [(ngModel)]="funding.additinalProductDeveloperNumber" [min]="1" [max]="100"  style="padding-top:20px">
+          <ion-icon range-left small name="remove"></ion-icon>
+          <ion-icon range-right name="add"></ion-icon>
+
+        </ion-range>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="border-bottom-width: 1px" >
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="margin-top: 10px">
+        <h5>Calculated Time in days </h5>
+      </ion-col>
+
+      <ion-col col-2>
+        <ion-input type="text" [placeholder]="funding.additinalProductDeveloperNumber*10" disabled style="padding-top:20px">
+        </ion-input>
       </ion-col>
 
     </ion-row>
 
+    <ion-row style="border-bottom-width: 1px" >
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="margin-top: 10px">
+        <h5># of Anticipated Sales Pitches </h5>
+      </ion-col>
 
+      <ion-col col-2>
+        <ion-input type="text" [placeholder]="funding.additinalSalesNumber" [(ngModel)]="funding.additinalSalesNumber" disabled style="padding-top:20px">
+        </ion-input>
+      </ion-col>
+      <ion-col col-4 >
+        <ion-range pin="true" snaps="true" [(ngModel)]="funding.additinalSalesNumber" [min]="1" [max]="10"   style="padding-top:20px">
+          <ion-icon range-left small name="remove"></ion-icon>
+          <ion-icon range-right name="add"></ion-icon>
 
+        </ion-range>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="border-bottom-width: 1px" >
+      <ion-col col-1></ion-col>
+      <ion-col col-4 style="margin-top: 10px">
+        <h5>Sales Pitch Budget </h5>
+      </ion-col>
+
+      <ion-col col-2>
+        <ion-input type="text" [placeholder]="funding.additinalSalesNumber*40000" disabled style="padding-top:20px">
+        </ion-input>
+      </ion-col>
+
+    </ion-row>
 
   </ion-grid>
 
-  </div>
+  <ion-grid *ngIf="tabs=='Summary'">
+    <ion-row>
+      <ion-col style="margin-left: 30px"> <h5>  Influence attained by niche market </h5></ion-col>
+    </ion-row >
+    <ion-row>
+      <ion-col col-4 text-center> <span> VRKidEd:  {{ sumInfluenceSales.VRKidEd }}  </span></ion-col>
+      <ion-col col-4 text-center> <span> VRGames : {{ sumInfluenceSales.VRGames }}</span></ion-col>
+      <ion-col col-4 text-center> <span> AdEdVR : {{ sumInfluenceSales.AdEdVR }}  </span></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4 text-center> <span> GovVR : {{ sumInfluenceSales.GovVR }} </span></ion-col>
+      <ion-col col-4 text-center> <span>MilitaryVR :{{ sumInfluenceSales.MilitaryVR }}</span></ion-col>
+      <ion-col col-4 text-center> <span>VRCinema : {{ sumInfluenceSales.VRCinema }}  </span></ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col style="margin-left: 30px"> <h5>  Competence lost and gained </h5></ion-col>
+    </ion-row >
+    <ion-row >
+      <ion-col col-4 text-center>
+            <span>  Marketing Loss:  {{calculatedValues.marketingLoss}} </span>
+          </ion-col>
+
+          <ion-col  col-4 text-center>
+            <span> Development Loss:  {{calculatedValues.developmentLoss}} </span>
+          </ion-col>
 
 
+    </ion-row>
+    <ion-row >
 
+      <ion-col  col-4 text-center>
+            <span>  Marketing Gain:  {{calculatedValues.marketingGain }} </span>
+          </ion-col>
+
+          <ion-col   col-4 text-center>
+            <span>  Development Gain:  {{calculatedValues.developmentGain}} </span>
+          </ion-col>
+
+    </ion-row>
+
+
+    <ion-row>
+
+      <ion-col col-4  style="margin-left: 30px">
+        <h5> Total Headcount Costs: </h5>
+      </ion-col>
+
+      <ion-col col-4>
+        <h5>  {{funding.additinalProductDeveloperNumber*40000}}</h5>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
 <ion-footer>
   <ion-buttons style="margin-right: 90px;margin-bottom: 6px" end>
