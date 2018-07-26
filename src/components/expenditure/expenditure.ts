@@ -32,7 +32,7 @@ export class Expenditure {
 
   public fileUploadInit(){
     this.uploader = new FileUploader({
-      url: "/files/upload",
+      url: "/api/files/upload",
       method: "POST",
       autoUpload: true
     });

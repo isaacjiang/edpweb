@@ -74,7 +74,7 @@ export class Root {
     ionViewWillEnter() {
       this.loader = this.loadingCtrl.create({
         content: "Please wait...",
-        duration: 3000
+        duration: 2000
       });
       this.loader.present();
     }
@@ -100,9 +100,7 @@ export class Root {
       root.events.subscribe("header-toggle-menu", (menuId) => {
        this.loadMenu(menuId)
       })
-      root.events.subscribe("header-user-login", () => {
-        this._doLogout()
-      });
+
       root.events.subscribe("header-logout-current-user", () => {
         this._doLogout()
       });
@@ -110,6 +108,11 @@ export class Root {
        // console.log(account)
         this._doLogin(account)
       });
+      root.events.subscribe("signup-do-signup", (account) => {
+        // console.log(account)
+        this._doSignup(account)
+      });
+
       root.events.subscribe("fixedmenu-click-item", (param) =>{
         //console.log(param,param["processName"]+param["taskID"])
         this.loadContentView(param["processName"]+param["taskID"])
@@ -200,7 +203,7 @@ export class Root {
       this.user.status().subscribe((resp)=>{
        // console.log(resp)
         this.current_user = resp;
-        this.loader.dismiss();
+        if(this.loader!=undefined)this.loader.dismiss();
         this.events.publish("root-update-user-status",this.current_user)
         if(this.current_user!=null && this.current_user['status']["is_anonymous"]){
           this.navCtrl.push(Welcome)
@@ -287,7 +290,8 @@ export class Root {
       let url = "/api/entities/getuserinfo"+"?username="+current_username
       this.api.get(url).subscribe((resp)=>{
         this.user_info = resp
-       // console.log(resp )
+        console.log(resp )
+        this.events.publish("root-update-user-info",this.user_info)
         let ref = this._loadComponent(this.statusMenuHost.viewContainerRef,StatusComponent)
         ref.instance.setUserInfo(this.user_info);
       })
@@ -322,7 +326,7 @@ export class Root {
         if(resp["login_status"]){
           this.navCtrl.pop()
           this.authentication()
-          this.events.publish("root-login-modal-dismiss",this.current_user)
+         // this.events.publish("root-login-modal-dismiss",this.current_user)
         }
         else{
           console.log(resp["message"])
@@ -330,6 +334,24 @@ export class Root {
       })
 
     }
+
+    private _doSignup(account){
+      console.log(account)
+
+    this.user.signup(account).subscribe((resp)=>{
+      console.log(1,resp)
+
+      if(resp["register_status"]){
+        this.navCtrl.pop()
+        this.authentication()
+       // this.events.publish("root-login-modal-dismiss",this.current_user)
+      }
+      else{
+        console.log(resp["message"])
+      }
+    })
+
+  }
 
     private _doLogout(){
       this.user.logout().subscribe((resp)=>{

@@ -41,7 +41,7 @@ export class Negotiation1 {
 
   public fileUploadInit(){
     this.uploader = new FileUploader({
-      url: "/files/upload",
+      url: "/api/files/upload",
       method: "POST",
       autoUpload: true
     });
@@ -85,7 +85,7 @@ export class Negotiation1 {
     params.data.data.forEach(function (d) {
               //d.src = '/photo/'+d.employeeName+'.GIF'
               if (d.photo) {
-                d.url = "/files/download?filename=" + d.photo['filename'] +
+                d.url = "/api/files/download?filename=" + d.photo['filename'] +
                   "&id=" + d.photo['objectID'] + "&ctype=" + d.photo['content_type']
               }
 

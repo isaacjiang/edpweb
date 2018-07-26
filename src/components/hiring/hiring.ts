@@ -32,7 +32,7 @@ export class Hiring {
 
   public fileUploadInit(){
     this.uploader = new FileUploader({
-      url: "/files/upload",
+      url: "/api/files/upload",
       method: "POST",
       autoUpload: true
     });
@@ -76,7 +76,7 @@ export class Hiring {
     Object.keys(params.data).forEach(function (key) {
       params.data[key].forEach(function (e) {
         if (e.photo) {
-          e.url = "/files/download?filename=" + e.photo['filename'] +
+          e.url = "/api/files/download?filename=" + e.photo['filename'] +
             "&id=" + e.photo['objectID'] + "&ctype=" + e.photo['content_type']
         }
 

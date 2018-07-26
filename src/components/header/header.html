@@ -68,13 +68,13 @@
           </button>
         </ion-buttons>
 
-        <ion-buttons *ngIf="viewCtl.showLogin">
-          <button ion-button icon-only (click)="login()">
-            <ion-icon name="person"></ion-icon>
+        <ion-buttons *ngIf="viewCtl.showJoinTeam">
+          <button ion-button icon-only (click)="joinTeam()">
+            <ion-icon name="people"></ion-icon>
           </button>
         </ion-buttons>
-        <ion-buttons *ngIf="viewCtl.showRegister">
-          <button ion-button icon-only (click)="register()">
+        <ion-buttons *ngIf="viewCtl.showSignup">
+          <button ion-button icon-only (click)="signup()">
             <ion-icon name="person-add"></ion-icon>
           </button>
         </ion-buttons>

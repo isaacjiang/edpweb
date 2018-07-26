@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {AlertController, Events, IonicPage, ModalController} from 'ionic-angular';
-import {Login} from "../../components/login/login";
+
 
 
 /**
@@ -20,17 +20,6 @@ export class Welcome {
 
   }
 
-  ionViewWillEnter() {
-
-  }
-
-  ionViewDidEnter() {
-
-  }
-
-  ionViewWillLeave() {
-
-  }
 
   login() {
     //this.modalCtl.create(Login,null,{enableBackdropDismiss:false}).present();
@@ -61,7 +50,10 @@ export class Welcome {
           text: 'Login',
           handler: data => {
            // console.log('Saved clicked',data);
-            this.events.publish("login-do-login", data)
+            if(data.username!="" && data.password!= "" && data.username.length>=6 ){
+              this.events.publish("login-do-login", data)
+            }
+
           }
         }
       ]
@@ -71,6 +63,52 @@ export class Welcome {
   }
 
   signup() {
+    let prompt = this.alertCtrl.create({
+      title: 'SignUp',
+      //message: "Enter a name for this new album you're so keen on adding",
+      inputs: [
+        {
+          name: 'username',
+          placeholder: 'Username'
+        },
+        {
+          name: 'email',
+          type:"email",
+          placeholder: 'Email'
+        },
+        {
+          name: 'password',
+          type:"password",
+          placeholder: 'Password'
+        },
+        {
+          name: 'password2',
+          type:"password",
+          placeholder: 'Confirm Password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Regular User',
+          handler: data => {
+            console.log('Cancel clicked');
+            data.permission =1
+            if(data.username!="" && data.password!= "" && data.username.length>=6 && data.password == data.password2){
+              this.events.publish("signup-do-signup", data)
+            }else{
+//todo send message
+            }
+          }
+        }
+      ]
+    });
 
+    prompt.present();
   }
 }

@@ -33,7 +33,7 @@ export class PdfViewerComponent {
       }
       this.document.viewDocument('assets/myFile.pdf', 'application/pdf', options)
       // $scope.pdfName = ' Introduction';
-      this.pdfSrc = "/files/download?filename=" + this.file_info['filename'] +
+      this.pdfSrc = "/api/files/download?filename=" + this.file_info['filename'] +
         "&id=" + this.file_info['objectID'] + "&ctype=" + this.file_info['content_type']
       // //'static/pdf/oea-big-data-guide-1522052.pdf';
       //

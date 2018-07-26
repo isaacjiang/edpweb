@@ -113,7 +113,7 @@ export class Resource {
 
       headers.append('Accept', 'application/json');
 
-      this.api.post("/files/upload", {files:file},{observe: 'response'})
+      this.api.post("/api/files/upload", {files:file},{observe: 'response'})
         .subscribe(
           (response) => console.log(response)
         )

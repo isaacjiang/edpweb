@@ -51,7 +51,7 @@ export class User {
    * the user entered on the form.
    */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo);
+    let seq = this.api.post('/api/users/register', accountInfo);
     return seq;
   }
 

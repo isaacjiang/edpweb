@@ -13,8 +13,6 @@ import { Api } from '../services/api.service';
 import {Root} from "../views/root/root";
 import {Welcome} from "../views/welcome/welcome";
 
-import {Login} from "../components/login/login";
-
 import {MainMenuDirective} from "../directives/main.menu.directive";
 import {ContentDirective} from "../directives/content.directive";
 import {HeaderComponent} from "../components/header/header";
@@ -53,7 +51,7 @@ import {Negotiation1} from "../components/negotiation1/negotiation1";
     HeaderComponent,MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component,
     EDPWebApp,
-    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1
+    Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1
   ],
 
   imports: [
@@ -66,7 +64,7 @@ import {Negotiation1} from "../components/negotiation1/negotiation1";
   entryComponents: [
     EDPWebApp,
     Root,Welcome,
-    Login,Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1,
+    Forecasting,Hiring,Resource,Action,Workforce,Expenditure,Negotiation1,
     MenuComponent,FixedMenuComponent,HelpMenuComponent,BudgetMenuComponent,
     StatusComponent,PdfViewerComponent,KPIComponent,SettingsComponent,StatisticsComponent,AccountComponent,KPI2Component
   ],

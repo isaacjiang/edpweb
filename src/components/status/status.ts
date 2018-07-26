@@ -30,8 +30,8 @@ export class StatusComponent{
       if(user_info && user_info.userInfo){
         this.user_info.companyName = user_info.userInfo.companyName;
         this.user_info.teamName = user_info.userInfo.teamName;
-        this.user_info.teamUsers = user_info.teamInfo.users.length;
-        this.user_info.currentPeriod = user_info.companyInfo.currentPeriod;
+        this.user_info.teamUsers =user_info.teamInfo? user_info.teamInfo.users.length:0;
+        this.user_info.currentPeriod = user_info.companyInfo?user_info.companyInfo.currentPeriod:0;
       }
 
     }
