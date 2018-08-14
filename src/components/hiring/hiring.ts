@@ -135,19 +135,6 @@ export class Hiring {
 
   private fileChange(event) {
     console.log(this.uploader)
-    // this.uploader.response.subscribe( res => console.log(res) );
-
-
-    // let fileList: FileList = event.target.files;
-    // if(fileList.length > 0) {
-    //   let file: File = fileList[0];
-    //   let headers = new Headers();
-    //
-    //   headers.append('Accept', 'application/json');
-    //
-    //   this.api.post("/files/upload", {files:file},{observe: 'response'})
-    //     .subscribe((response) => console.log(response))
-    // }
   }
 
 }
