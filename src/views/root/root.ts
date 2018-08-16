@@ -267,7 +267,11 @@ export class Root {
           ref.instance.initialiazation(this.current_user,menuID)
           break;
         }
-        case 'settings1': {
+        case 'settings1':
+        case 'settings2':
+        case 'settings3':
+        case 'settings4':
+        case 'settings6':{
           let ref = this._loadComponent(this.contentHost.viewContainerRef,SettingsComponent)
           ref.instance.initialiazation(this.current_user,menuID)
           break;

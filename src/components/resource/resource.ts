@@ -3,6 +3,7 @@ import {Component} from '@angular/core';
 import {Events, ModalController, NavParams, ViewController} from 'ionic-angular';
 import {Api} from "../../services/api.service";
 import {PdfViewerComponent} from "../pdfviewer/pdfviewer";
+import {FileUploader} from "ng2-file-upload";
 
 
 
@@ -16,6 +17,7 @@ export class Resource {
   private tabs:any ;
   private parameters:any ={tabs_value:[]};
   private resource: any;
+  private uploader: FileUploader;
 
   constructor(public events: Events,
               public api:Api,
@@ -25,6 +27,7 @@ export class Resource {
 
     this.eventsHandles(this)
     this.initialization(this,navParam.data)
+    this.fileUploadInit();
   }
 
   private eventsHandles(root) {
@@ -43,6 +46,32 @@ export class Resource {
 
   private dismiss() {
     this.viewCtl.dismiss();
+  }
+
+
+  public fileUploadInit(){
+    this.uploader = new FileUploader({
+      url: "/api/files/upload",
+      method: "POST",
+      autoUpload: true
+    });
+    this.uploader.onCompleteItem=(item:any,resp:any,status,opt)=> {
+
+      //console.log(JSON.parse(resp))
+      this.task_info.infoFile=JSON.parse(resp)
+      this.api.post("/api/dtools/updatetaskfile", {
+        task_id: this.task_info._id,
+        infoFile: JSON.parse(resp)
+      }).subscribe(resp2 => {
+        console.log(resp2)
+        // $rootScope.tasklists.forEach(function (t) {
+        //   if (t._id == task._id){
+        //     t.infoFile = response.data[0]
+        //   }
+        // })
+      })
+
+    }
   }
 
   private initialization(root,params){
@@ -105,19 +134,14 @@ export class Resource {
     this.modalCtl.create(PdfViewerComponent,fileInfo).present();
   }
 
-  private fileChange(event) {
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-      let file: File = fileList[0];
-      let headers = new Headers();
 
-      headers.append('Accept', 'application/json');
-
-      this.api.post("/api/files/upload", {files:file},{observe: 'response'})
-        .subscribe(
-          (response) => console.log(response)
-        )
-    }
+  private clickFileInput(){
+    document.getElementById('selectedFile').click()
   }
+
+  private fileChange(event) {
+    console.log(this.uploader)
+  }
+
 
 }
