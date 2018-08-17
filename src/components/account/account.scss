@@ -38,7 +38,9 @@ edp-account {
     border-top: solid 1px #2a2a2a;
     //border-left: solid 1px #2a2a2a;
   }
-
+  .trow:first-child .tcol {
+    border-top: none;
+  }
   .trow:last-child .tcol {
     border-bottom: solid 1px #2a2a2a;
   }
