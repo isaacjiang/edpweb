@@ -39,6 +39,7 @@ import {AccountComponent} from "../../components/account/account";
 import {SettingsComponent} from "../../components/settings/settings";
 import {KPI2Component} from "../../components/kpi2/kpi2";
 import {Negotiation1} from "../../components/negotiation1/negotiation1";
+import {Niches} from "../../components/niches/niches";
 
 @IonicPage()
 @Component({
@@ -506,10 +507,10 @@ export class Root {
         +"&teamName="+ params.teamName
         +"&period="+ params.period
 
-      this.api.get("/api/dtools/hiring"+urlParams)
-        .subscribe((employees)=>{
-            console.log(employees)
-            this.modalCtl.create(Hiring,{params:params,data:employees},{enableBackdropDismiss:false}).present();
+      this.api.get("/api/dtools/niches"+urlParams)
+        .subscribe((niches)=>{
+            //console.log(niches)
+            this.modalCtl.create(Niches,{params:params,data:niches},{enableBackdropDismiss:false}).present();
           }
         )
 
