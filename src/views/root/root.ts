@@ -40,6 +40,7 @@ import {SettingsComponent} from "../../components/settings/settings";
 import {KPI2Component} from "../../components/kpi2/kpi2";
 import {Negotiation1} from "../../components/negotiation1/negotiation1";
 import {Niches} from "../../components/niches/niches";
+import {Corporateacquisition} from "../../components/corporateacquisition/corporateacquisition";
 
 @IonicPage()
 @Component({
@@ -526,10 +527,10 @@ export class Root {
         +"&teamName="+ params.teamName
         +"&period="+ params.period
 
-      this.api.get("/api/dtools/hiring"+urlParams)
-        .subscribe((employees)=>{
-            console.log(employees)
-            this.modalCtl.create(Hiring,{params:params,data:employees},{enableBackdropDismiss:false}).present();
+      this.api.get("/api/dtools/corporateacquisitions"+urlParams)
+        .subscribe((corporateacquisitions)=>{
+            console.log(corporateacquisitions)
+            this.modalCtl.create(Corporateacquisition,{params:params,data:corporateacquisitions},{enableBackdropDismiss:false}).present();
           }
         )
 
