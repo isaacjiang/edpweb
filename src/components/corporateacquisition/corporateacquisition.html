@@ -36,230 +36,103 @@
 
 <ion-content>
 
-  <ion-grid *ngIf="task_info.companyName=='LegacyCo'">
+  <ion-grid >
 
     <ion-row>
-      <ion-col col-3 text-center>
-          <ion-label  style="margin-top:23px"><h5> Advertising :</h5></ion-label>
+      <ion-col col-2 offset-1 >
+          <ion-label  style="margin-top:23px"><h5> Name :</h5></ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-            <ion-label color="primary" floating>Rev.A</ion-label>
-            <ion-input [(ngModel)]="acc_budgets.B2B_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
+      <ion-col col-2 text-center>
+        <ion-label  style="margin-top:23px"><h5> Niche :</h5></ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.B</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2C_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
+      <ion-col col-2 text-center>
+        <ion-label  style="margin-top:23px"><h5> Development Cost :</h5></ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_AA"   readonly></ion-input>
-        </ion-item>
+      <ion-col col-2 text-center>
+        <ion-label  style="margin-top:23px"><h5>Minimum Bid :</h5></ion-label>
       </ion-col>
+      <ion-col col-2 text-center>
+        <ion-label  style="margin-top:23px"><h5>Selected to Bid:</h5></ion-label>
+      </ion-col>
+
     </ion-row>
 
     <ion-row>
+      <ion-col col-2  offset-1>
+        <ion-label >{{ corporates[tabs].name }}</ion-label>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-label  >{{ corporates[tabs].niche }}</ion-label>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-label  >{{ corporates[tabs].developmentCost_text }}</ion-label>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-label >{{ corporates[tabs].minimumBid_text }}</ion-label>
+      </ion-col>
+      <ion-col col-2 text-center>
+        <ion-checkbox  [(ngModel)]="corporates[tabs].selected"  ></ion-checkbox>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+
+      <ion-col col-5 offset-1>
+        <ion-item>
+          <ion-label color="primary" floating>Cash Offer </ion-label>
+          <ion-input [(ngModel)]="offer.cash" type="number" step="1000000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col col-5>
+        <ion-item>
+          <ion-label color="primary" floating># of Shares Offered</ion-label>
+          <ion-input [(ngModel)]="offer.shares" type="number"  step="1000" (ionChange)="onChange()"></ion-input>
+        </ion-item>
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col col-2 offset-1>
+        <ion-label >Current Share Price: </ion-label>
+      </ion-col>
       <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Salesforce :</h5></ion-label>
+        <ion-label  >{{ offer.current_share_price }}</ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.A</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2B_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
+      <ion-col col-2 text-center>
+        <ion-label  >Treasury Shares in Hand:</ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.B</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2C_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
+      <ion-col col-3 text-center>
+        <ion-label >{{ offer.treasury_shares }}</ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_DM"   readonly></ion-input>
-        </ion-item>
+
+
+    </ion-row>
+    <ion-row>
+
+      <ion-col col-2 offset-1>
+        <ion-label  ><h5>Offer Value:</h5></ion-label>
       </ion-col>
+      <ion-col col-5 text-center>
+        <ion-label><h5>{{ offer.total }}</h5></ion-label>
+      </ion-col>
+
+
     </ion-row>
 
     <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Social Media :</h5></ion-label>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.A</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2B_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.B</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2C_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_PD"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
 
-    <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Totals :</h5></ion-label>
+      <ion-col col-2 offset-1>
+        <ion-label  ><h5> Time Left :</h5></ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.A</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2B_total" readonly></ion-input>
-        </ion-item>
+      <ion-col col-5 text-center>
+        <ion-label ><h5>{{ stop_watch }}</h5></ion-label>
       </ion-col>
-      <ion-col col-3>
-        <ion-item>
-          <ion-label color="primary" floating>Rev.B</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.B2C_total" readonly></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_total"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
 
+
+    </ion-row>
 
   </ion-grid>
-  <ion-grid *ngIf="task_info.companyName=='NewCo'">
 
-    <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Advertising :</h5></ion-label>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#1</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche1_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#2</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche2_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#3 </ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche3_AA" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_AA"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Salesforce :</h5></ion-label>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#1</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche1_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#2</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche2_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#3 </ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche3_DM" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_DM"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Social Media :</h5></ion-label>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#1</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche1_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#2</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche2_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#3 </ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche3_PD" type="number" min="1000000" step="1000000" (ionChange)="onChange()"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_PD"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col col-3 text-center>
-        <ion-label  style="margin-top:23px"><h5> Totals :</h5></ion-label>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#1</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche1_total" readonly></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#2</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche2_total" readonly></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-2>
-        <ion-item>
-          <ion-label color="primary" floating>Niche#3</ion-label>
-          <ion-input [(ngModel)]="acc_budgets.Niche3_total" readonly></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col col-3>
-        <ion-item style="margin-top:23px">
-          <ion-label>Total</ion-label>
-          <ion-input  [(ngModel)]="acc_budgets.total_total"   readonly></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-
-
-  </ion-grid>
 
 
 

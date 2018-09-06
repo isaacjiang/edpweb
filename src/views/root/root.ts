@@ -530,7 +530,8 @@ export class Root {
       this.api.get("/api/dtools/corporateacquisitions"+urlParams)
         .subscribe((corporateacquisitions)=>{
             console.log(corporateacquisitions)
-            this.modalCtl.create(Corporateacquisition,{params:params,data:corporateacquisitions},{enableBackdropDismiss:false}).present();
+          params.username = this.current_user.username;
+             this.modalCtl.create(Corporateacquisition,{params:params,data:corporateacquisitions},{enableBackdropDismiss:false}).present();
           }
         )
 
