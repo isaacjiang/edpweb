@@ -254,11 +254,15 @@ export class Root {
     }
 
     public loadContentView(menuID){
+      // console.log(menuID)
       switch (menuID) {
         case 'statistics1':
-        case 'dashboard1':{
+        case 'dashboard1':
+        case 'dashboard2':
+        case 'dashboard3':
+        case 'dashboard4':{
           let ref = this._loadComponent(this.contentHost.viewContainerRef,StatisticsComponent)
-          ref.instance.initialiazation(this.current_user,menuID)
+          ref.instance.initialiazation(this.current_user,menuID,this.user_info)
           break;
         }
         case 'account1':

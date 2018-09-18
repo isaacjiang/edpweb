@@ -25,12 +25,12 @@ export class AccountComponent {
     }
 
     eventsHandles(root) {
-        root.events.unsubscribe('policyList')
-        root.events.subscribe('policyList', (originalData) => {
-            console.log(originalData)
-           root.fillingData(originalData)
-
-        })
+        // root.events.unsubscribe('policyList')
+        // root.events.subscribe('policyList', (originalData) => {
+        //     console.log(originalData)
+        //    root.fillingData(originalData)
+        //
+        // })
     }
 
     initialiazation(current_user,menuID) {
