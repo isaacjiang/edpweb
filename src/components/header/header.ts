@@ -119,7 +119,8 @@ export class HeaderComponent {
                   userrole: "CEO"}
               }).subscribe(resp=>{
                  console.log(resp)
-
+                this.events.publish("header-load-page",'home')
+                this.updateViewCtrl(this.current_user)
               })
 
 
@@ -141,7 +142,8 @@ export class HeaderComponent {
                   userrole: "CEO"}
               }).subscribe(resp=>{
                 console.log(resp)
-
+                this.events.publish("header-load-page","home")
+                this.updateViewCtrl(this.current_user)
               })
             }
           }

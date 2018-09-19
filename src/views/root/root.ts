@@ -352,7 +352,7 @@ export class Root {
       console.log(1,resp)
 
       if(resp["register_status"]){
-        this.navCtrl.pop()
+       if (this.navCtrl.length()>1){this.navCtrl.pop()}
         this.authentication()
        // this.events.publish("root-login-modal-dismiss",this.current_user)
       }

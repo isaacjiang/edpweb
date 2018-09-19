@@ -2,7 +2,10 @@
   <ion-card>
 
     <ion-row class="trow"  nowrap >
-      <ion-col class="tcol"  text-start *ngFor="let title of formTitle">
+      <ion-col class="tcol" col-2 text-start>
+        <span>{{ formTitle[0] }}</span>
+      </ion-col>
+      <ion-col class="tcol"  text-start *ngFor="let title of formTitle.slice(1)">
         <span>{{ title }}</span>
       </ion-col>
 
@@ -13,7 +16,10 @@
       <!--<ion-card-content>-->
 
       <ion-row class="trow"  nowrap *ngFor="let line of formData;let indexRow = index" (mousemove)="selectLine($event)">
-        <ion-col class="tcol" text-start (click)="selectCell(indexRow,indexCol)" *ngFor="let cell of line;let indexCol= index">
+        <ion-col class="tcol" text-start col-2 (click)="selectCell(indexRow,indexCol)">
+          <span>{{  line[0] }}</span>
+        </ion-col>
+        <ion-col class="tcol" text-start (click)="selectCell(indexRow,indexCol)" *ngFor="let cell of line.slice(1);let indexCol= index">
           <span>{{  cell }}</span>
         </ion-col>
         <!--<ion-col col-4 class="tcol" text-start (click)="selectCell(indexRow,indexCol)">-->

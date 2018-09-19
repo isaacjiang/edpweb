@@ -16,10 +16,12 @@ edp-statistics {
 
   .trow {
     cursor: pointer;
-    height: 48px;
+    height: 32px;
     vertical-align: center;
     margin-left: 10px;
     margin-right: 10px;
+    font-size: 10px;
+
   }
 
   .trow:hover .tcol {
@@ -28,14 +30,13 @@ edp-statistics {
 
   .trow .tcol {
     height: 100%;
-    width: 48px;
-    min-width: 48px;
-    line-height: 48px; /* <-- this is what you must define */
+    width: 32px;
+    min-width: 32px;
+    line-height: 32px; /* <-- this is what you must define */
     //background-color: #ddd;
     border-top: solid 1px #2a2a2a;
     //border-left: solid 1px #2a2a2a;
   }
-
   .trow:last-child .tcol {
     border-bottom: solid 1px #2a2a2a;
   }
@@ -49,7 +50,7 @@ edp-statistics {
 
   ion-icon {
     margin-top: 6px;
-    font-size: 36px;
+    font-size: 16px;
   }
 
 }
